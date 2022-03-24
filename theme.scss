@@ -60,44 +60,12 @@ $presentation-title-slide-text-align: center;
 
 /*-- scss:rules --*/
 
-.reveal .slide blockquote {
-  border-left: 3px solid $text-muted;
-  padding-left: 0.5em;
-}
-
 .reveal .footer a {
   color: inherit;
   text-decoration: underline;
 }
 
 .reveal .slide-logo {
-  max-height: 6rem;
-}
-
-.reveal .title-slide.center {
-  margin-top: 0;
-}
-
-.reveal .has-dark-background > blockquote {
-  color: white;
-}
-
-.columns .spaced > .column:first-child  {
-  margin-right: 2%;
-}
-
-.smaller {
-  font-size: 1.4rem;
-}
-
-
-.profiles > ul {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.profiles > ul > li {
-  list-style: none;
-  display: inline-block;
+  max-height: 6rem !important;
 }
 

@@ -1,6 +1,6 @@
 ---
 title: "The Duality of Data Visualization"
-subtitle: "*Visualizing Data for Insights and Communication*"
+subtitle: "*Visualizing Data for Insight and Communication*"
 author: Jannik Buhr
 date: June 20, 2022
 format:
@@ -9,13 +9,36 @@ format:
     chalkboard: true
     theme: [default, theme.scss]
     logo: ./img/hits-logo.png
-    footer: "[jmbuhr.de](https://jmbuhr.de)"
+    footer: "[jmbuhr.de/hits-scientific-seminar-datavis](https://jmbuhr.de/hits-scientific-seminar-datavis)"
 bibliography: references.bib
 execute:
   echo: true
   enabled: false
 
 ---
+
+# The Grammar of Graphics {auto-animate=true data-id=gg}
+
+:::footer
+[@wilkinsonGrammarGraphics2005a; @wickhamLayeredGrammarGraphics2010a]
+:::
+
+# The Grammar of Graphics {auto-animate=true data-id=gg auto-animate-duration=1.2}
+
+::: {.columns}
+::: {.column width=50%}
+![](./img/pexels-karolina-grabowska-4887167.jpg){width=60%}
+:::
+::: {.column width=50% .incremental}
+- todo
+- todo
+:::
+:::
+
+
+:::footer
+[@wilkinsonGrammarGraphics2005a; @wickhamLayeredGrammarGraphics2010a]
+:::
 
 # Let's go on a trip!
 
@@ -81,11 +104,7 @@ penguins |>
   geom_point()
 ```
 
-# The Grammar of Graphics
 
-:::footer
-[@wilkinsonGrammarGraphics2005a; @wickhamLayeredGrammarGraphics2010a]
-:::
 
 # Tidy Data
 
