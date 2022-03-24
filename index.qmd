@@ -1,0 +1,101 @@
+---
+title: "The Duality of Data Visualization"
+subtitle: "*Visualizing Data for Insights and Communication*"
+author: Jannik Buhr
+date: June 20, 2022
+format:
+  revealjs:
+    css: styles.css
+    chalkboard: true
+    theme: [default, theme.scss]
+    logo: ./img/hits-logo.png
+    footer: "[jmbuhr.de](https://jmbuhr.de)"
+bibliography: references.bib
+execute:
+  echo: true
+  enabled: false
+
+---
+
+# Let's go on a trip!
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(palmerpenguins)
+library(knitr)
+```
+
+## Palmer Archipelago {background-iframe="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572669.243839383!2d-66.65912791297224!3d-64.07273637748037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc78dd6dc38c572b%3A0xe609367aeed33087!2sPalmer%20Archipelago!5e0!3m2!1sen!2sde!4v1648136525579!5m2!1sen!2sde"}
+
+
+# Penguins!
+
+![](./img/lter_penguins.png)
+
+::: {.aside}
+Artwork by \@allisonhorst
+:::
+
+:::footer
+[@R-palmerpenguins]
+:::
+
+## Penguins!
+
+```{r}
+penguins |> head() |> kable()
+```
+
+:::footer
+[@R-palmerpenguins]
+:::
+
+
+## Penguins {auto-animate=true}
+
+```{r} 
+penguins
+```
+
+## Penguins {auto-animate=true}
+
+```{r}
+penguins |>
+  ggplot(aes(bill_length_mm, bill_depth_mm))
+```
+
+## Penguins {auto-animate=true}
+
+```{r} 
+penguins |>
+  ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  geom_point()
+```
+
+## Penguins {auto-animate=true}
+
+```{r} 
+penguins |>
+  ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) +
+  geom_point()
+```
+
+# The Grammar of Graphics
+
+:::footer
+[@wilkinsonGrammarGraphics2005a; @wickhamLayeredGrammarGraphics2010a]
+:::
+
+# Tidy Data
+
+# Other Implementations
+
+- siuba
+- (seaborn)
+
+# Thank You!
+
+## References
+
+
