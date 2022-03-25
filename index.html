@@ -408,8 +408,9 @@
 
 <section id="title-slide" class="center">
   <h1 class="title">The Duality of Data Visualization</h1>
-  <p class="subtitle"><em>Visualizing Data for Insight and Communication</em></p>
+  <p class="subtitle">Visualizing Data for Insight and Communication</p>
   <p class="author">Jannik Buhr</p>
+  <p class="institute">Heidelberg Institute for Theoretical Studies</p>
   <p class="date">June 20, 2022</p>
 </section>
 
@@ -462,40 +463,151 @@
 <h2>Penguins!</h2>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">head</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<colgroup>
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 16%">
+<col style="width: 15%">
+<col style="width: 20%">
+<col style="width: 13%">
+<col style="width: 7%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">island</th>
+<th style="text-align: right;">bill_length_mm</th>
+<th style="text-align: right;">bill_depth_mm</th>
+<th style="text-align: right;">flipper_length_mm</th>
+<th style="text-align: right;">body_mass_g</th>
+<th style="text-align: left;">sex</th>
+<th style="text-align: right;">year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">39.1</td>
+<td style="text-align: right;">18.7</td>
+<td style="text-align: right;">181</td>
+<td style="text-align: right;">3750</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">2007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">39.5</td>
+<td style="text-align: right;">17.4</td>
+<td style="text-align: right;">186</td>
+<td style="text-align: right;">3800</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">2007</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">40.3</td>
+<td style="text-align: right;">18.0</td>
+<td style="text-align: right;">195</td>
+<td style="text-align: right;">3250</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">2007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">2007</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">36.7</td>
+<td style="text-align: right;">19.3</td>
+<td style="text-align: right;">193</td>
+<td style="text-align: right;">3450</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">2007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">39.3</td>
+<td style="text-align: right;">20.6</td>
+<td style="text-align: right;">190</td>
+<td style="text-align: right;">3650</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">2007</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="footer">
 <p><span class="citation" data-cites="R-palmerpenguins">(<a href="#/ref-R-palmerpenguins" role="doc-biblioref" onclick="return false;">Horst, Hill, and Gorman 2020</a>)</span></p>
 </div>
 </section>
-<section id="penguins-2" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Penguins</h2>
+<section id="penguins-2" class="slide level2">
+<h2>Penguins</h2>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb2-1" class="hljs-ln-code"><a href="#cb2-1"></a>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code># A tibble: 344 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
 </div>
 </section>
-<section id="penguins-3" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Penguins</h2>
+<section id="penguins-3" class="slide level2">
+<h2>Penguins</h2>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb3-1" class="hljs-ln-code"><a href="#cb3-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb3-2" class="hljs-ln-code"><a href="#cb3-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(bill_length_mm, bill_depth_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(bill_length_mm, bill_depth_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</div>
 </div>
 </section>
-<section id="penguins-4" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Penguins</h2>
+<section id="penguins-4" class="slide level2">
+<h2>Penguins</h2>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb4-1" class="hljs-ln-code"><a href="#cb4-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb4-2" class="hljs-ln-code"><a href="#cb4-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(bill_length_mm, bill_depth_mm)) <span class="sc">+</span></span>
-<span id="cb4-3" class="hljs-ln-code"><a href="#cb4-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(bill_length_mm, bill_depth_mm)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</section>
-<section id="penguins-5" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Penguins</h2>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<section id="penguins-5" class="slide level2">
+<h2>Penguins</h2>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb5-1" class="hljs-ln-code"><a href="#cb5-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb5-2" class="hljs-ln-code"><a href="#cb5-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(bill_length_mm, bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb5-3" class="hljs-ln-code"><a href="#cb5-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(bill_length_mm, bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</section></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section></section>
 <section id="tidy-data" class="title-slide slide level1 center">
 <h1>Tidy Data</h1>
 
@@ -514,13 +626,30 @@
 <h1>Thank You!</h1>
 
 </section>
-<section id="references" class="slide level2 smaller scrollable">
-<h2>References</h2>
-
-<img src="./img/hits-logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
-<p><a href="https://jmbuhr.de/hits-scientific-seminar-datavis">jmbuhr.de/hits-scientific-seminar-datavis</a></p>
+<section id="thank-you-1" class="slide level2 smaller scrollable">
+<h2>Thank You!</h2>
+<h3 id="want-to-learn-more">Want to learn more?</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Connect with me on slack</li>
+<li>Or check out my website: <a href="https://jmbuhr.de" class="uri">https://jmbuhr.de</a></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><span class="qrcode"></span></p>
 </div>
+</div>
+<script src="./www/qrcode.min.js"></script>
+<script type="text/javascript">
+let elem = document.getElementsByClassName("qrcode")[0]
+new QRCode(elem, "https://jmbuhr.de");
+</script>
+<p><br></p>
+<h3 id="references">References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Allaire_Quarto_2022" class="csl-entry" role="doc-biblioentry">
+Allaire, J. J., Charles Teague, Carlos Scheidegger, Yihui Xie, and Christophe Dervieux. 2022. <em><span>Quarto</span></em> (version 0.3). <a href="https://doi.org/10.5281/zenodo.5960048">https://doi.org/10.5281/zenodo.5960048</a>.
+</div>
 <div id="ref-R-palmerpenguins" class="csl-entry" role="doc-biblioentry">
 Horst, Allison, Alison Hill, and Kristen Gorman. 2020. <em>Palmerpenguins: <span>Palmer</span> Archipelago (Antarctica) Penguin Data</em>. Manual.
 </div>
@@ -530,6 +659,10 @@ Wickham, Hadley. 2010. <span>“A <span>Layered Grammar</span> of <span>Graphics
 <div id="ref-wilkinsonGrammarGraphics2005a" class="csl-entry" role="doc-biblioentry">
 Wilkinson, Leland, D. Wills, D. Rope, A. Norton, and R. Dubbs. 2005. <em>The <span>Grammar</span> of <span>Graphics</span></em>. 2nd edition. <span>New York</span>: <span>Springer</span>.
 </div>
+</div>
+
+<img src="./img/hits-logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<p><a href="https://jmbuhr.de/hits-scientific-seminar-datavis">jmbuhr.de/hits-scientific-seminar-datavis</a></p>
 </div>
 </section></section>
     </div>

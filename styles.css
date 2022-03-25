@@ -1,6 +1,28 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Hurricane&display=swap');
+
 :root {
   --hits-blue: #0d3063;
 }
+
+.reveal .subtitle {
+  /* margin-top: 10%; */
+  margin-bottom: 10%;
+  font-size: 1.3em;
+  font-family: Miriam Libre;
+}
+
+.reveal .author, .reveal .date, .reveal .institute {
+  font-family: Hurricane;
+  font-size: 1.3em;
+  color: #0d3063ef;
+  font-weight: 400;
+}
+
+.reveal .qrcode img {
+  margin: auto;
+  max-height: 100px;
+}
+
 
 

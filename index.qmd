@@ -1,8 +1,17 @@
 ---
 title: "The Duality of Data Visualization"
-subtitle: "*Visualizing Data for Insight and Communication*"
-author: Jannik Buhr
-date: June 20, 2022
+subtitle: "Visualizing Data for Insight and Communication"
+author: "Jannik Buhr"
+date: "June 20, 2022"
+institute: Heidelberg Institute for Theoretical Studies
+abstract: |
+  As scientists we interact with data on a daily basis.
+  We generate or collect data and analyse it to answer our research questions.
+  Visualizations play a key role in this process.
+  Not only do we rely on visualizations to spot patterns in our data,
+  they are also a vital part when it comes to communicating our findings.
+  In this talk we will explore concepts related to data visualization on a theoretical and practical basis to take our data visualizations to the next level.
+  The example data we will be using is not specific to any research field and even though code examples use the language R there will be something to take away for everyone, whether you research very large or very small things and whether you code in R, python or julia.
 format:
   revealjs:
     css: styles.css
@@ -10,12 +19,16 @@ format:
     theme: [default, theme.scss]
     logo: ./img/hits-logo.png
     footer: "[jmbuhr.de/hits-scientific-seminar-datavis](https://jmbuhr.de/hits-scientific-seminar-datavis)"
+link-citations: true
 bibliography: references.bib
+nocite: |
+  @Allaire_Quarto_2022
 execute:
   echo: true
-  enabled: false
+  enabled: true
 
 ---
+
 
 # The Grammar of Graphics {auto-animate=true data-id=gg}
 
@@ -75,20 +88,21 @@ penguins |> head() |> kable()
 :::
 
 
-## Penguins {auto-animate=true}
+## Penguins
 
 ```{r} 
 penguins
 ```
 
-## Penguins {auto-animate=true}
+## Penguins
 
 ```{r}
+#| output-location: fragment
 penguins |>
   ggplot(aes(bill_length_mm, bill_depth_mm))
 ```
 
-## Penguins {auto-animate=true}
+## Penguins
 
 ```{r} 
 penguins |>
@@ -96,14 +110,13 @@ penguins |>
   geom_point()
 ```
 
-## Penguins {auto-animate=true}
+## Penguins
 
 ```{r} 
 penguins |>
   ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) +
   geom_point()
 ```
-
 
 
 # Tidy Data
@@ -115,6 +128,31 @@ penguins |>
 
 # Thank You!
 
-## References
+## Thank You!
 
+### Want to learn more?
+
+::: {.columns}
+::: {.column width=50%}
+- Connect with me on slack
+- Or check out my website: <https://jmbuhr.de>
+:::
+::: {.column width=50%}
+[]{.qrcode}
+:::
+:::
+
+
+<script src="./www/qrcode.min.js"></script>
+<script type="text/javascript">
+let elem = document.getElementsByClassName("qrcode")[0]
+new QRCode(elem, "https://jmbuhr.de");
+</script>
+
+<br>
+
+### References
+
+:::{#refs}
+:::
 
