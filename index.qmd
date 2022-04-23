@@ -16,7 +16,7 @@ format:
   revealjs:
     css: styles.css
     chalkboard: true
-    theme: [default, theme.scss]
+    theme: [default, hits.scss]
     logo: ./img/hits-logo.png
     footer: "[jmbuhr.de/hits-scientific-seminar-datavis](https://jmbuhr.de/hits-scientific-seminar-datavis)"
 link-citations: true
