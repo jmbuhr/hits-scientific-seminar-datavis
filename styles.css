@@ -19,10 +19,32 @@
   font-weight: 400;
 }
 
-.reveal .qrcode img {
-  margin: auto;
-  max-height: 100px;
+
+.reveal .cent, .reveal .cent > p, .cent > img {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
 }
 
 
+.tiny {
+    margin-top: 10%;
+    font-size: 0.9rem;
+}
+
+
+.profile {
+  /* position: absolute; */
+  /* bottom: 10%; */
+  /* right: -12%; */
+  /* display: flex; */
+}
+
+.profile li {
+  list-style: none;
+}
+
+.profile li a::before {
+  margin: 10px;
+}
 

@@ -26,9 +26,11 @@ nocite: |
 execute:
   echo: true
   enabled: true
+  message: false
+  warning: false
+engine: markdown
 
 ---
-
 
 # The Grammar of Graphics {auto-animate=true data-id=gg}
 
@@ -60,7 +62,10 @@ execute:
 library(tidyverse)
 library(palmerpenguins)
 library(knitr)
+
+theme_set(theme_minimal())
 ```
+
 
 ## Palmer Archipelago {background-iframe="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572669.243839383!2d-66.65912791297224!3d-64.07273637748037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc78dd6dc38c572b%3A0xe609367aeed33087!2sPalmer%20Archipelago!5e0!3m2!1sen!2sde!4v1648136525579!5m2!1sen!2sde"}
 
@@ -91,6 +96,7 @@ penguins |> head() |> kable()
 ## Penguins
 
 ```{r} 
+#| eval: false
 penguins
 ```
 
@@ -99,14 +105,14 @@ penguins
 ```{r}
 #| output-location: fragment
 penguins |>
-  ggplot(aes(bill_length_mm, bill_depth_mm))
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm))
 ```
 
 ## Penguins
 
 ```{r} 
 penguins |>
-  ggplot(aes(bill_length_mm, bill_depth_mm)) +
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point()
 ```
 
@@ -114,17 +120,45 @@ penguins |>
 
 ```{r} 
 penguins |>
-  ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) +
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
   geom_point()
 ```
 
 
 # Tidy Data
 
+## Tidy Data
+
+@wickhamTidyData2014
+
 # Other Implementations
 
-- siuba
-- (seaborn)
+## Python: plotnine
+
+```{python} 
+from plotnine import *
+from plotnine.data import mtcars
+
+p = (ggplot(mtcars, aes('wt', 'mpg'))
+ + geom_point())
+print(p)
+```
+
+## (Seaborn)
+
+## Julia: Gadfly
+
+```{julia}
+#| eval: false
+using Gadfly, PalmerPenguins, DataFrames
+penguins = DataFrame(PalmerPenguins.load());
+p = plot(penguins, x=:bill_length_mm, y=:bill_depth_mm, Geom.point);
+img = SVG("img/julia_plot.svg", 14cm, 8cm)
+draw(img, p)
+```
+
+![Gadfly plot](./img/julia_plot.svg)
+
 
 # Thank You!
 
@@ -132,26 +166,33 @@ penguins |>
 
 ### Want to learn more?
 
-::: {.columns}
-::: {.column width=50%}
-- Connect with me on slack
-- Or check out my website: <https://jmbuhr.de>
-:::
-::: {.column width=50%}
-[]{.qrcode}
-:::
+::: {layout="[1,2,0.5]"}
+![See you on the otter slide.](https://media.giphy.com/media/Ov2S60rDmVTMc/giphy.gif){#otterslide}
+
+:::{.profile}
+- [jmbuhr](https://github.com/jmbuhr.de){.bi-github}
+- [jmbuhr.de](https://jmbuhr.de){.bi-house}
+- [jannikbuhr](https://twitter.com/jannikbuhr){.bi-twitter}
+- [jmbuhr](https://www.linkedin.com/in/jmbuhr/){.bi-linkedin}
 :::
 
+[Slides:]{#qrcode}
+:::
+
+<style>
+figcaption {
+    text-align: center;
+}
+</style>
 
 <script src="./www/qrcode.min.js"></script>
 <script type="text/javascript">
-let elem = document.getElementsByClassName("qrcode")[0]
-new QRCode(elem, "https://jmbuhr.de");
+let elem = document.getElementById("qrcode")
+new QRCode(elem, "https:/github.com/jmbuhr/hits-scientific-seminar-datavis");
 </script>
 
-<br>
 
-### References
+## References
 
 :::{#refs}
 :::
