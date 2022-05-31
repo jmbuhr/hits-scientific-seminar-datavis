@@ -26,33 +26,39 @@ nocite: |
 execute:
   echo: true
   enabled: true
-  message: false
   warning: false
-engine: markdown
-
+engine: knitr
 ---
 
-# The Grammar of Graphics {auto-animate=true data-id=gg}
+# The Grammar of Graphics {auto-animate="true" data-id="gg"}
 
-:::footer
+::: footer
 [@wilkinsonGrammarGraphics2005a; @wickhamLayeredGrammarGraphics2010a]
 :::
 
-# The Grammar of Graphics {auto-animate=true data-id=gg auto-animate-duration=1.2}
+# The Grammar of Graphics {auto-animate="true" data-id="gg" auto-animate-duration="1.2"}
 
-::: {.columns}
-::: {.column width=50%}
-![](./img/pexels-karolina-grabowska-4887167.jpg){width=60%}
-:::
-::: {.column width=50% .incremental}
-- todo
-- todo
-:::
+::: columns
+::: {.column width="40%"}
+![](./img/pexels-karolina-grabowska-4887167.jpg){width="60%"}
 :::
 
+::: {.column .incremental width="60%"}
+-   basesd on "The Grammar of Graphics" by Leland Wilkinson
+-   popularized by Hadley Wickham with the R packge `ggplot2`
+-   No monolitic plotting functions but instead a set of blocks to combine
+-   powerful
+-   iterative
+-   expressive
+:::
+:::
 
-:::footer
+::: footer
 [@wilkinsonGrammarGraphics2005a; @wickhamLayeredGrammarGraphics2010a]
+:::
+
+::: notes
+-> frees us from constraints, allows to create any plot possible, allows quick iterai
 :::
 
 # Let's go on a trip!
@@ -63,22 +69,27 @@ library(tidyverse)
 library(palmerpenguins)
 library(knitr)
 
+data(volcano)
+colnames(volcano) <- 1:ncol(volcano)
+volcano <- volcano |> 
+  as_tibble() |> 
+  mutate(y = 1:n()) |> 
+  pivot_longer(-y, names_to = "x", names_transform = parse_number)
+
 theme_set(theme_minimal())
 ```
 
-
 ## Palmer Archipelago {background-iframe="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572669.243839383!2d-66.65912791297224!3d-64.07273637748037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc78dd6dc38c572b%3A0xe609367aeed33087!2sPalmer%20Archipelago!5e0!3m2!1sen!2sde!4v1648136525579!5m2!1sen!2sde"}
-
 
 # Penguins!
 
 ![](./img/lter_penguins.png)
 
-::: {.aside}
+::: aside
 Artwork by \@allisonhorst
 :::
 
-:::footer
+::: footer
 [@R-palmerpenguins]
 :::
 
@@ -88,14 +99,13 @@ Artwork by \@allisonhorst
 penguins |> head() |> kable()
 ```
 
-:::footer
+::: footer
 [@R-palmerpenguins]
 :::
 
-
 ## Penguins
 
-```{r} 
+```{r}
 #| eval: false
 penguins
 ```
@@ -110,7 +120,7 @@ penguins |>
 
 ## Penguins
 
-```{r} 
+```{r}
 penguins |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point()
@@ -118,12 +128,73 @@ penguins |>
 
 ## Penguins
 
-```{r} 
+```{r}
 penguins |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
   geom_point()
 ```
 
+# The Duality of Data Visualization
+
+Plotting for yourself vs. plotting to **communicate**.
+
+## Penguins
+
+```{r}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point() +
+  scale_color_manual(values = c(Chinstrap = "#c55bca",
+                                Gentoo    = "#047076",
+                                Adelie    = "#ff6900"))
+```
+
+![](./img/lter_penguins.png){width=30% #small-penguins}
+
+## Penguins
+
+```{r}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point() +
+  scale_color_manual(values = c(Chinstrap = "#c55bca",
+                                Gentoo    = "#047076",
+                                Adelie    = "#ff6900")) +
+  guides(color = "none")
+```
+
+![](./img/lter_penguins.png){width=30% #small-penguins}
+
+## Penguins
+
+```{r}
+#| out-width: 80%
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point() +
+  scale_color_manual(values = c(Chinstrap = "#c55bca",
+                                Gentoo    = "#047076",
+                                Adelie    = "#ff6900")) +
+  guides(color = "none") +
+  labs(x = "Bill length [mm]",
+       y = "Bill depth [mm]")
+```
+
+![](./img/lter_penguins.png){width=30% #small-penguins}
+
+## Speaking of Color
+
+### Color Scales Matter
+
+
+```{r}
+volcano |> 
+  ggplot(aes(x, y, fill = value, color = value)) +
+  geom_contour_filled()
+```
+
+
+## Colors
 
 # Tidy Data
 
@@ -131,22 +202,36 @@ penguins |>
 
 @wickhamTidyData2014
 
+## Tidy Data
+
+notes:
+
+- not always the most space effective
+- not being in a tidy format is not necessarily bad
+- but tidy works well with ggplot
+- and allows you to think about your data more effectively
+- knowing the rules allows you to break them
+  with purpose
+- similarities: feature matrix / vector in machine learning
+  are in a tidy format!
+
 # Other Implementations
 
 ## Python: plotnine
 
-```{python} 
-from plotnine import *
-from plotnine.data import mtcars
+```{python}
+# eval: false
+# from plotnine import *
+r.penguins
 
-p = (ggplot(mtcars, aes('wt', 'mpg'))
- + geom_point())
-print(p)
+# p = (ggplot(r.penguins, aes('bill_length_mm', 'bill_depth_mm'))
+#  + geom_point())
+# print(p)
 ```
 
 ## (Seaborn)
 
-## Julia: Gadfly
+## Julia: Gadfly 
 
 ```{julia}
 #| eval: false
@@ -159,7 +244,6 @@ draw(img, p)
 
 ![Gadfly plot](./img/julia_plot.svg)
 
-
 # Thank You!
 
 ## Thank You!
@@ -169,31 +253,33 @@ draw(img, p)
 ::: {layout="[1,2,0.5]"}
 ![See you on the otter slide.](https://media.giphy.com/media/Ov2S60rDmVTMc/giphy.gif){#otterslide}
 
-:::{.profile}
-- [jmbuhr](https://github.com/jmbuhr.de){.bi-github}
-- [jmbuhr.de](https://jmbuhr.de){.bi-house}
-- [jannikbuhr](https://twitter.com/jannikbuhr){.bi-twitter}
-- [jmbuhr](https://www.linkedin.com/in/jmbuhr/){.bi-linkedin}
+::: profile
+-   [jmbuhr](https://github.com/jmbuhr.de){.bi-github}
+-   [jmbuhr.de](https://jmbuhr.de){.bi-house}
+-   [jannikbuhr](https://twitter.com/jannikbuhr){.bi-twitter}
+-   [jmbuhr](https://www.linkedin.com/in/jmbuhr/){.bi-linkedin}
 :::
 
 [Slides:]{#qrcode}
 :::
 
+```{=html}
 <style>
 figcaption {
     text-align: center;
 }
 </style>
-
+```
+```{=html}
 <script src="./www/qrcode.min.js"></script>
+```
+```{=html}
 <script type="text/javascript">
 let elem = document.getElementById("qrcode")
 new QRCode(elem, "https:/github.com/jmbuhr/hits-scientific-seminar-datavis");
 </script>
-
-
+```
 ## References
 
-:::{#refs}
+::: {#refs}
 :::
-

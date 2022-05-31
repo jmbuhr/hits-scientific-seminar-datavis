@@ -13,7 +13,7 @@
 }
 
 .reveal .author, .reveal .date, .reveal .institute {
-  font-family: Hurricane;
+  /* font-family: Hurricane; */
   font-size: 1.3em;
   color: #0d3063ef;
   font-weight: 400;
@@ -48,3 +48,9 @@
   margin: 10px;
 }
 
+#small-penguins {
+    position: absolute;
+    width: 50.0%;
+    top: 0;
+    right: 0;
+}

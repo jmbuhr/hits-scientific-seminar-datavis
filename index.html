@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-99.9.9">
+  <meta name="generator" content="quarto-0.9.393">
 
   <meta name="author" content="Jannik Buhr">
   <meta name="dcterms.date" content="2022-06-20">
@@ -423,29 +423,43 @@
 <section id="the-grammar-of-graphics-1" class="title-slide slide level1 center" data-auto-animate="true" data-id="gg" data-auto-animate-duration="1.2">
 <h1>The Grammar of Graphics</h1>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:40%;">
 <p><img data-src="./img/pexels-karolina-grabowska-4887167.jpg" style="width:60.0%"></p>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="width:60%;">
 <ul>
-<li class="fragment">todo</li>
-<li class="fragment">todo</li>
+<li class="fragment">basesd on “The Grammar of Graphics” by Leland Wilkinson</li>
+<li class="fragment">popularized by Hadley Wickham with the R packge <code>ggplot2</code></li>
+<li class="fragment">No monolitic plotting functions but instead a set of blocks to combine</li>
+<li class="fragment">powerful</li>
+<li class="fragment">iterative</li>
+<li class="fragment">expressive</li>
 </ul>
 </div>
 </div>
 <div class="footer">
 <p><span class="citation" data-cites="wilkinsonGrammarGraphics2005a wickhamLayeredGrammarGraphics2010a">(<a href="#/ref-wilkinsonGrammarGraphics2005a" role="doc-biblioref" onclick="return false;">Wilkinson et al. 2005</a>; <a href="#/ref-wickhamLayeredGrammarGraphics2010a" role="doc-biblioref" onclick="return false;">Wickham 2010</a>)</span></p>
 </div>
+<aside class="notes">
+<p>-&gt; frees us from constraints, allows to create any plot possible, allows quick iterai</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 
 <section>
 <section id="lets-go-on-a-trip" class="title-slide slide level1 center">
 <h1>Let’s go on a trip!</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {r} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>#| echo: false</span>
-<span id="cb1-2"><a href="#cb1-2"></a>library(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>library(palmerpenguins)</span>
-<span id="cb1-4"><a href="#cb1-4"></a>library(knitr)</span>
-<span id="cb1-5"><a href="#cb1-5"></a></span>
-<span id="cb1-6"><a href="#cb1-6"></a>theme_set(theme_minimal())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+
+</div>
 </section>
 <section id="palmer-archipelago" class="slide level2" data-background-iframe="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572669.243839383!2d-66.65912791297224!3d-64.07273637748037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc78dd6dc38c572b%3A0xe609367aeed33087!2sPalmer%20Archipelago!5e0!3m2!1sen!2sde!4v1648136525579!5m2!1sen!2sde">
 <h2>Palmer Archipelago</h2>
@@ -463,33 +477,203 @@
 </div></aside></section>
 <section id="penguins-1" class="slide level2">
 <h2>Penguins!</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {r} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>penguins |&gt; head() |&gt; kable()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">head</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<colgroup>
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 16%">
+<col style="width: 15%">
+<col style="width: 20%">
+<col style="width: 13%">
+<col style="width: 7%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">island</th>
+<th style="text-align: right;">bill_length_mm</th>
+<th style="text-align: right;">bill_depth_mm</th>
+<th style="text-align: right;">flipper_length_mm</th>
+<th style="text-align: right;">body_mass_g</th>
+<th style="text-align: left;">sex</th>
+<th style="text-align: right;">year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">39.1</td>
+<td style="text-align: right;">18.7</td>
+<td style="text-align: right;">181</td>
+<td style="text-align: right;">3750</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">2007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">39.5</td>
+<td style="text-align: right;">17.4</td>
+<td style="text-align: right;">186</td>
+<td style="text-align: right;">3800</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">2007</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">40.3</td>
+<td style="text-align: right;">18.0</td>
+<td style="text-align: right;">195</td>
+<td style="text-align: right;">3250</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">2007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">2007</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">36.7</td>
+<td style="text-align: right;">19.3</td>
+<td style="text-align: right;">193</td>
+<td style="text-align: right;">3450</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">2007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">39.3</td>
+<td style="text-align: right;">20.6</td>
+<td style="text-align: right;">190</td>
+<td style="text-align: right;">3650</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">2007</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div class="footer">
 <p><span class="citation" data-cites="R-palmerpenguins">(<a href="#/ref-R-palmerpenguins" role="doc-biblioref" onclick="return false;">Horst, Hill, and Gorman 2020</a>)</span></p>
 </div>
 </section>
 <section id="penguins-2" class="slide level2">
 <h2>Penguins</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {r} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>#| eval: false</span>
-<span id="cb3-2"><a href="#cb3-2"></a>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="penguins-3" class="slide level2">
 <h2>Penguins</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {r} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>#| output-location: fragment</span>
-<span id="cb4-2"><a href="#cb4-2"></a>penguins |&gt;</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  ggplot(aes(x = bill_length_mm, y = bill_depth_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+</div>
+</div>
 </section>
 <section id="penguins-4" class="slide level2">
 <h2>Penguins</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {r} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>penguins |&gt;</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +</span>
-<span id="cb5-3"><a href="#cb5-3"></a>  geom_point()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
 <section id="penguins-5" class="slide level2">
 <h2>Penguins</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {r} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>penguins |&gt;</span>
-<span id="cb6-2"><a href="#cb6-2"></a>  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +</span>
-<span id="cb6-3"><a href="#cb6-3"></a>  geom_point()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section></section>
+<section>
+<section id="the-duality-of-data-visualization" class="title-slide slide level1 center">
+<h1>The Duality of Data Visualization</h1>
+<p>Plotting for yourself vs.&nbsp;plotting to <strong>communicate</strong>.</p>
+</section>
+<section id="penguins-6" class="slide level2">
+<h2>Penguins</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Chinstrap =</span> <span class="st">"#c55bca"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>                                <span class="at">Gentoo    =</span> <span class="st">"#047076"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>                                <span class="at">Adelie    =</span> <span class="st">"#ff6900"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</div>
+</div>
+<p><img data-src="./img/lter_penguins.png" id="small-penguins" style="width:30.0%"></p>
+</section>
+<section id="penguins-7" class="slide level2">
+<h2>Penguins</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Chinstrap =</span> <span class="st">"#c55bca"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5"></a>                                <span class="at">Gentoo    =</span> <span class="st">"#047076"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6"></a>                                <span class="at">Adelie    =</span> <span class="st">"#ff6900"</span>)) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</div>
+</div>
+<p><img data-src="./img/lter_penguins.png" id="small-penguins" style="width:30.0%"></p>
+</section>
+<section id="penguins-8" class="slide level2">
+<h2>Penguins</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Chinstrap =</span> <span class="st">"#c55bca"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5"></a>                                <span class="at">Gentoo    =</span> <span class="st">"#047076"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6"></a>                                <span class="at">Adelie    =</span> <span class="st">"#ff6900"</span>)) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill length [mm]"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9"></a>       <span class="at">y =</span> <span class="st">"Bill depth [mm]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-9-1.png" style="width:80.0%"></p>
+</div>
+</div>
+<p><img data-src="./img/lter_penguins.png" id="small-penguins" style="width:30.0%"></p>
+</section>
+<section id="speaking-of-color" class="slide level2">
+<h2>Speaking of Color</h2>
+<h3 id="color-scales-matter">Color Scales Matter</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>volcano <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">geom_tile</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<section id="colors" class="slide level2">
+<h2>Colors</h2>
 </section></section>
 <section>
 <section id="tidy-data" class="title-slide slide level1 center">
@@ -499,6 +683,18 @@
 <section id="tidy-data-1" class="slide level2">
 <h2>Tidy Data</h2>
 <p><span class="citation" data-cites="wickhamTidyData2014">Wickham (<a href="#/ref-wickhamTidyData2014" role="doc-biblioref" onclick="return false;">2014</a>)</span></p>
+</section>
+<section id="tidy-data-2" class="slide level2">
+<h2>Tidy Data</h2>
+<p>notes:</p>
+<ul>
+<li>not always the most space effective</li>
+<li>not being in a tidy format is not necessarily bad</li>
+<li>but tidy works well with ggplot</li>
+<li>and allows you to think about your data more effectively</li>
+<li>knowing the rules allows you to break them with purpose</li>
+<li>similarities: feature matrix / vector in machine learning are in a tidy format!</li>
+</ul>
 </section></section>
 <section>
 <section id="other-implementations" class="title-slide slide level1 center">
@@ -507,24 +703,44 @@
 </section>
 <section id="python-plotnine" class="slide level2">
 <h2>Python: plotnine</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {python} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>from plotnine import *</span>
-<span id="cb7-2"><a href="#cb7-2"></a>from plotnine.data import mtcars</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a>p = (ggplot(mtcars, aes('wt', 'mpg'))</span>
-<span id="cb7-5"><a href="#cb7-5"></a> + geom_point())</span>
-<span id="cb7-6"><a href="#cb7-6"></a>print(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># eval: false</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co"># from plotnine import *</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>r.penguins</span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="co"># p = (ggplot(r.penguins, aes('bill_length_mm', 'bill_depth_mm'))</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co">#  + geom_point())</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="co"># print(p)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       species     island  bill_length_mm  ...  body_mass_g     sex  year
+0       Adelie  Torgersen            39.1  ...         3750    male  2007
+1       Adelie  Torgersen            39.5  ...         3800  female  2007
+2       Adelie  Torgersen            40.3  ...         3250  female  2007
+3       Adelie  Torgersen             NaN  ...  -2147483648     NaN  2007
+4       Adelie  Torgersen            36.7  ...         3450  female  2007
+..         ...        ...             ...  ...          ...     ...   ...
+339  Chinstrap      Dream            55.8  ...         4000    male  2009
+340  Chinstrap      Dream            43.5  ...         3400  female  2009
+341  Chinstrap      Dream            49.6  ...         3775    male  2009
+342  Chinstrap      Dream            50.8  ...         4100    male  2009
+343  Chinstrap      Dream            50.2  ...         3775  female  2009
+
+[344 rows x 8 columns]</code></pre>
+</div>
+</div>
 </section>
 <section id="seaborn" class="slide level2">
 <h2>(Seaborn)</h2>
 </section>
 <section id="julia-gadfly" class="slide level2">
 <h2>Julia: Gadfly</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {julia} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>#| eval: false</span>
-<span id="cb8-2"><a href="#cb8-2"></a>using Gadfly, PalmerPenguins, DataFrames</span>
-<span id="cb8-3"><a href="#cb8-3"></a>penguins = DataFrame(PalmerPenguins.load());</span>
-<span id="cb8-4"><a href="#cb8-4"></a>p = plot(penguins, x=:bill_length_mm, y=:bill_depth_mm, Geom.point);</span>
-<span id="cb8-5"><a href="#cb8-5"></a>img = SVG("img/julia_plot.svg", 14cm, 8cm)</span>
-<span id="cb8-6"><a href="#cb8-6"></a>draw(img, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">using</span> <span class="bu">Gadfly</span>, <span class="bu">PalmerPenguins</span>, <span class="bu">DataFrames</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>penguins <span class="op">=</span> <span class="fu">DataFrame</span>(PalmerPenguins.<span class="fu">load</span>());</span>
+<span id="cb12-3"><a href="#cb12-3"></a>p <span class="op">=</span> <span class="fu">plot</span>(penguins, x<span class="op">=:</span>bill_length_mm, y<span class="op">=:</span>bill_depth_mm, Geom.point);</span>
+<span id="cb12-4"><a href="#cb12-4"></a>img <span class="op">=</span> <span class="fu">SVG</span>(<span class="st">"img/julia_plot.svg"</span>, <span class="fl">14</span>cm, <span class="fl">8</span>cm)</span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="fu">draw</span>(img, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 <img data-src="./img/julia_plot.svg" class="r-stretch quarto-figure-center"><p class="caption">Gadfly plot</p></section></section>
 <section>
@@ -806,6 +1022,48 @@ Wilkinson, Leland, D. Wills, D. Rope, A. Norton, and R. Dubbs. 2005. <em>The <sp
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
