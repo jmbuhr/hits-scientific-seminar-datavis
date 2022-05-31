@@ -19,6 +19,11 @@ format:
     theme: [default, hits.scss]
     logo: ./img/hits-logo.png
     footer: "[jmbuhr.de/hits-scientific-seminar-datavis](https://jmbuhr.de/hits-scientific-seminar-datavis)"
+    code-copy: true
+    code-link: true
+    fig-responsive: true
+    citations-hover: true
+    footnotes-hover: true
 link-citations: true
 bibliography: references.bib
 nocite: |
@@ -27,7 +32,9 @@ execute:
   echo: true
   enabled: true
   warning: false
+  cache: true
 engine: knitr
+
 ---
 
 # The Grammar of Graphics {auto-animate="true" data-id="gg"}
@@ -112,8 +119,9 @@ penguins
 
 ## Penguins
 
-```{r}
+```{r fig-penguins}
 #| output-location: fragment
+#| fig-cap: Penguins!
 penguins |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm))
 ```
@@ -133,6 +141,71 @@ penguins |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
   geom_point()
 ```
+
+## The Principles of a Plot
+  
+::: {.columns}
+::: {.column width="60%"}
+```{r}
+#| echo: false
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point() +
+  facet_wrap(~island, labeller=label_both) +
+  theme(text = element_text(size = 20))
+```
+:::
+::: {.column width="40%" .incremental}
+- data and aesthetic mappings
+- geometric objects
+- scales
+- facet specification
+- statistical transformations
+- the coordinate system
+:::
+:::
+
+
+:::footer
+[@wickhamLayeredGrammarGraphics2010a]
+:::
+
+
+## The Principles of a Plot
+
+:::{#fig-pie layout=[[1,2]]}
+```{r} 
+#| echo: false
+cols <- c('#0292D8', '#F7EA39', '#C4B632')
+data <- tibble(
+  value = c(280, 60, 20),
+  id    = fct_inorder(c('Sky', 'Sunny side of pyramid', 'Shady side of pyramid'))
+)
+
+plt <- ggplot(data, aes(x = "", y = value, fill = id)) +
+  geom_col() +
+  scale_fill_manual(values = cols, name = "") +
+  theme(legend.text = element_text(size = 20),
+        plot.margin = unit(rep(0, 4), "lines"))
+plt +
+  guides(fill = "none")
+```
+
+:::fragment
+```{r}
+#| echo: false
+plt +
+  coord_polar(clip = "off", theta = "y",
+              start = 2.45) +
+  theme_void() +
+  theme(legend.text = element_text(size = 20),
+        plot.margin = unit(rep(0, 4), "lines"))
+```
+:::
+
+Coordinate systems
+:::
+
 
 # The Duality of Data Visualization
 
@@ -169,32 +242,92 @@ penguins |>
 
 ```{r}
 #| out-width: 80%
+#| code-fold: true
 penguins |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
-  geom_point() +
+  geom_point(size = 1.4) +
   scale_color_manual(values = c(Chinstrap = "#c55bca",
                                 Gentoo    = "#047076",
                                 Adelie    = "#ff6900")) +
   guides(color = "none") +
   labs(x = "Bill length [mm]",
-       y = "Bill depth [mm]")
+       y = "Bill depth [mm]",
+       title = "Penguins of the Palmer Archipelago",
+       caption = "Datasource: (Horst, Hill, and Gorman 2020)")
 ```
 
 ![](./img/lter_penguins.png){width=30% #small-penguins}
 
 ## Speaking of Color
 
-### Color Scales Matter
-
-
+:::{layout="[[1,1],[1,1]]" #fig-colorpanel .fig-colorpanel}
 ```{r}
+#| label: fig-blues
+#| fig-cap: Volcano dataset, default colors
+#| echo: false
 volcano |> 
-  ggplot(aes(x, y, fill = value, color = value)) +
-  geom_contour_filled()
+  ggplot(aes(x, y, fill = value)) +
+  geom_tile()
 ```
 
+```{r}
+#| label: fig-rainbow
+#| fig-cap: Rainbow colors
+#| echo: false
+volcano |> 
+  ggplot(aes(x, y, fill = value)) +
+  geom_tile() +
+  scale_fill_gradientn(colors = rainbow(10))
+```
 
-## Colors
+```{r}
+#| label: fig-viridis
+#| fig-cap: Viridis colors
+#| echo: false
+volcano |> 
+  ggplot(aes(x, y, fill = value)) +
+  geom_tile() +
+  scale_fill_viridis_c()
+```
+
+```{r} 
+#| label: fig-terrain
+#| fig-cap: Terrain colors
+#| echo: false
+library(rayshader)
+
+plt <- volcano |>
+  ggplot(aes(x = y, y = x, z = value, fill = value)) +
+  geom_tile() +
+  geom_contour(color = "black") +
+  scale_x_continuous("X", expand = c(0, 0)) +
+  scale_y_continuous("Y", expand = c(0, 0)) +
+  scale_fill_gradientn("Z", colours = terrain.colors(10)) +
+  coord_fixed() +
+  theme_classic() +
+  guides(fill = "none")
+
+plot_gg(plt, multicore = TRUE, raytrace = TRUE,
+        width = 7, height = 4,
+        scale = 300, windowsize = c(1400, 866),
+        zoom = 1, phi = 30, theta = 30)
+Sys.sleep(0.2)
+render_snapshot(clear = TRUE)
+```
+
+ 
+:::
+
+::: {.notes}
+- perceptually uniform
+- works in color and b/w
+- works for common forms of color blindness
+:::
+
+:::footer
+More, see; <https://bids.github.io/colormap/>
+:::
+
 
 # Tidy Data
 
@@ -220,26 +353,41 @@ notes:
 ## Python: plotnine
 
 ```{python}
-# eval: false
-# from plotnine import *
-r.penguins
-
-# p = (ggplot(r.penguins, aes('bill_length_mm', 'bill_depth_mm'))
-#  + geom_point())
-# print(p)
+#| label: fig-plotnine
+#| eval: false
+from plotnine import *
+(
+ggplot(r.penguins, aes('bill_length_mm', 'bill_depth_mm'))
+ + geom_point()
+)
 ```
 
-## Python: Seaboron (nextgen)
+![](./img/plotnine.png)
 
-```{python} 
+## Python: Seaborn (nextgen)
+
+```{python}
+#| label: fig-seaborn
+#| eval: false
+import seaborn as sns
+import seaborn.objects as so
 from palmerpenguins import load_penguins
 penguins = load_penguins()
+sns.set_theme(style="whitegrid")
+
+(
+so.Plot(penguins, "bill_length_mm", "bill_depth_mm", color="species")
+    .add(so.Scatter(fillalpha=1))
+    .configure(figsize=(7,4))
+    .save("img/seaborn.png")
+)
 ```
+
+![](./img/seaborn.png)
 
 ## Julia: Gadfly 
 
-```{julia}
-#| eval: false
+```julia
 using Gadfly, PalmerPenguins, DataFrames
 penguins = DataFrame(PalmerPenguins.load());
 p = plot(penguins, x=:bill_length_mm, y=:bill_depth_mm, Geom.point);
@@ -248,6 +396,15 @@ draw(img, p)
 ```
 
 ![Gadfly plot](./img/julia_plot.svg)
+
+## Common themes
+
+e.g. ggplot and seaborn:
+
+- geom -> mark
+- stat -> stat
+- position -> move
+- scale -> scale
 
 # Thank You!
 
@@ -288,3 +445,4 @@ new QRCode(elem, "https:/github.com/jmbuhr/hits-scientific-seminar-datavis");
 
 ::: {#refs}
 :::
+

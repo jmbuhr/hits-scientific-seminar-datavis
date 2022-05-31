@@ -33,13 +33,6 @@
 }
 
 
-.profile {
-  /* position: absolute; */
-  /* bottom: 10%; */
-  /* right: -12%; */
-  /* display: flex; */
-}
-
 .profile li {
   list-style: none;
 }
@@ -53,4 +46,8 @@
     width: 50.0%;
     top: 0;
     right: 0;
+}
+
+.fig-colorpanel {
+  width: 90%;
 }
