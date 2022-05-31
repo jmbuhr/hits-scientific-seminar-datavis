@@ -229,7 +229,12 @@ r.penguins
 # print(p)
 ```
 
-## (Seaborn)
+## Python: Seaboron (nextgen)
+
+```{python} 
+from palmerpenguins import load_penguins
+penguins = load_penguins()
+```
 
 ## Julia: Gadfly 
 
