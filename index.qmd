@@ -24,6 +24,7 @@ format:
     fig-responsive: true
     citations-hover: true
     footnotes-hover: true
+    slide-number: true
 link-citations: true
 bibliography: references.bib
 nocite: |
@@ -74,7 +75,9 @@ engine: knitr
 #| echo: false
 library(tidyverse)
 library(palmerpenguins)
+library(rayshader)
 library(knitr)
+library(ggtext)
 
 data(volcano)
 colnames(volcano) <- 1:ncol(volcano)
@@ -83,7 +86,7 @@ volcano <- volcano |>
   mutate(y = 1:n()) |> 
   pivot_longer(-y, names_to = "x", names_transform = parse_number)
 
-theme_set(theme_minimal())
+# theme_set(theme_minimal())
 ```
 
 ## Palmer Archipelago {background-iframe="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572669.243839383!2d-66.65912791297224!3d-64.07273637748037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc78dd6dc38c572b%3A0xe609367aeed33087!2sPalmer%20Archipelago!5e0!3m2!1sen!2sde!4v1648136525579!5m2!1sen!2sde"}
@@ -227,33 +230,37 @@ penguins |>
 ## Penguins
 
 ```{r}
-penguins |>
-  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
-  geom_point() +
-  scale_color_manual(values = c(Chinstrap = "#c55bca",
-                                Gentoo    = "#047076",
-                                Adelie    = "#ff6900")) +
-  guides(color = "none")
-```
-
-![](./img/lter_penguins.png){width=30% #small-penguins}
-
-## Penguins
-
-```{r}
-#| out-width: 80%
 #| code-fold: true
+steve <- penguins |>
+  filter(species == "Chinstrap", bill_length_mm > 57)
+
 penguins |>
-  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
-  geom_point(size = 1.4) +
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species, group = species)) +
+  geom_smooth(method = "lm", se = FALSE, alpha = 0.6) +
+  geom_point(aes(shape = species), size = 1.4) +
   scale_color_manual(values = c(Chinstrap = "#c55bca",
                                 Gentoo    = "#047076",
                                 Adelie    = "#ff6900")) +
-  guides(color = "none") +
+  guides(shape = "none", color = "none") +
   labs(x = "Bill length [mm]",
        y = "Bill depth [mm]",
        title = "Penguins of the Palmer Archipelago",
-       caption = "Datasource: (Horst, Hill, and Gorman 2020)")
+       subtitle = "Species: <span style='color: #c55bca'>**Chinstrap**</span>, <span style='color: #047076'>**Gentoo**</span> and <span style='color: #ff6900'>**Adelie**</span>",
+       caption = "Datasource: (Horst, Hill, and Gorman 2020)") +
+   annotate(
+    geom = "curve", x = 55, y = 14,
+    xend = steve$bill_length_mm, yend = steve$bill_depth_mm - 0.3, 
+    curvature = .3, size = 1, arrow = arrow(length = unit(2, "mm"))
+  ) +
+  annotate(
+    geom = "text",
+    label = "Steve",
+    x = 55, y = 14, vjust = 0.5, hjust = 1.2,
+    fontface = "bold"
+  ) +
+  theme_minimal() +
+  theme(plot.subtitle = element_markdown(size = 16),
+        plot.title = element_text(size = 18))
 ```
 
 ![](./img/lter_penguins.png){width=30% #small-penguins}
@@ -266,7 +273,8 @@ penguins |>
 #| fig-cap: Volcano dataset, default colors
 #| echo: false
 volcano |> 
-  ggplot(aes(x, y, fill = value)) +
+  ggplot(aes(y, x, fill = value)) +
+  coord_fixed() +
   geom_tile()
 ```
 
@@ -275,8 +283,9 @@ volcano |>
 #| fig-cap: Rainbow colors
 #| echo: false
 volcano |> 
-  ggplot(aes(x, y, fill = value)) +
+  ggplot(aes(y, x, fill = value)) +
   geom_tile() +
+  coord_fixed() +
   scale_fill_gradientn(colors = rainbow(10))
 ```
 
@@ -285,8 +294,9 @@ volcano |>
 #| fig-cap: Viridis colors
 #| echo: false
 volcano |> 
-  ggplot(aes(x, y, fill = value)) +
+  ggplot(aes(y, x, fill = value)) +
   geom_tile() +
+  coord_fixed() +
   scale_fill_viridis_c()
 ```
 
@@ -294,10 +304,9 @@ volcano |>
 #| label: fig-terrain
 #| fig-cap: Terrain colors
 #| echo: false
-library(rayshader)
 
 plt <- volcano |>
-  ggplot(aes(x = y, y = x, z = value, fill = value)) +
+  ggplot(aes(y, x, z = value, fill = value)) +
   geom_tile() +
   geom_contour(color = "black") +
   scale_x_continuous("X", expand = c(0, 0)) +
@@ -310,8 +319,8 @@ plt <- volcano |>
 plot_gg(plt, multicore = TRUE, raytrace = TRUE,
         width = 7, height = 4,
         scale = 300, windowsize = c(1400, 866),
-        zoom = 1, phi = 30, theta = 30)
-Sys.sleep(0.2)
+        zoom = 0.55, phi = 35, theta = 20)
+Sys.sleep(0.1)
 render_snapshot(clear = TRUE)
 ```
 
@@ -330,6 +339,14 @@ More, see; <https://bids.github.io/colormap/>
 
 
 # Tidy Data
+
+> "Happy families are all alike;\
+> every unhappy family is unhappy in its own way"\
+> --- Leo Tolstoy
+
+:::footer
+<https://tidyr.tidyverse.org/articles/tidy-data.html>
+:::
 
 ## Tidy Data
 
@@ -406,13 +423,39 @@ e.g. ggplot and seaborn:
 - position -> move
 - scale -> scale
 
+# Resources
+
+## Books and other resources
+
+::: {.columns}
+::: {.column width="50%"}
+- ggplot2: Elegant Graphics for Data Analysis [@pedersenWelcomeGgplot2]
+- R Graphics Cookbook [@changGraphicsCookbook2nd]
+- "How Charts Lie" -- Alberto Cairo [@cairoHowChartsLie2019]
+- "Guide to Information Graphics" -- Dona M. Wong [@wongWallStreetJournal2013]
+- Tidy Data [@wickhamTidyData2014]
+:::
+::: {.column width="50%"}
+:::flex
+![](img/2022-06-02-12-03-17.png)
+
+![](img/2022-06-02-12-09-48.png)
+
+![](img/2022-06-02-11-50-02.png)
+
+![](img/2022-06-02-11-54-31.png)
+:::
+:::
+:::
+
+
 # Thank You!
 
 ## Thank You!
 
 ### Want to learn more?
 
-::: {layout="[1,2,0.5]"}
+::: {layout="[1,1,0.5]"}
 ![See you on the otter slide.](https://media.giphy.com/media/Ov2S60rDmVTMc/giphy.gif){#otterslide}
 
 ::: profile

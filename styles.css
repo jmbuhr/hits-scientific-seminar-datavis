@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Hurricane&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unna&display=swap');
 
 :root {
   --hits-blue: #0d3063;
@@ -51,3 +51,19 @@
 .fig-colorpanel {
   width: 90%;
 }
+
+.flex {
+  display: flex;
+  /* height: 500px; */
+  flex-wrap: wrap;
+}
+
+.flex p {
+  max-width: 30%;
+}
+
+blockquote {
+  font-family: Unna;
+}
+
+
