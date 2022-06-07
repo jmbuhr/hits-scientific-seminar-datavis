@@ -71,13 +71,16 @@ engine: knitr
 
 # Let's go on a trip!
 
-```{r}
+```{r setup}
 #| echo: false
+#| cache: false
 library(tidyverse)
 library(palmerpenguins)
 library(rayshader)
 library(knitr)
 library(ggtext)
+
+reticulate::use_condaenv("base")
 
 data(volcano)
 colnames(volcano) <- 1:ncol(volcano)
@@ -113,14 +116,14 @@ penguins |> head() |> kable()
 [@R-palmerpenguins]
 :::
 
-## Penguins
+## Grammar of Graphics
 
 ```{r}
 #| eval: false
 penguins
 ```
 
-## Penguins
+## Grammar of Graphics
 
 ```{r fig-penguins}
 #| output-location: fragment
@@ -129,7 +132,7 @@ penguins |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm))
 ```
 
-## Penguins
+## Grammar of Graphics
 
 ```{r}
 penguins |>
@@ -137,7 +140,7 @@ penguins |>
   geom_point()
 ```
 
-## Penguins
+## Grammar of Graphics
 
 ```{r}
 penguins |>
@@ -145,22 +148,49 @@ penguins |>
   geom_point()
 ```
 
-## The Principles of a Plot
+## Elements of a Plot
   
 ::: {.columns}
 ::: {.column width="60%"}
+::: {#fig-principles layout=[[5,-1],[5,-1]]}
 ```{r}
 #| echo: false
+#| fig-cap:  
+#| label: fig-facet
 penguins |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
-  geom_point() +
+  geom_smooth(aes(lty = island), method = "lm", se = FALSE) +
+  geom_smooth(aes(group = island), method = "lm", se = FALSE, color = "black") +
+  geom_point(aes(shape=sex)) +
   facet_wrap(~island, labeller=label_both) +
+  scale_shape(na.value = 15) +
   theme(text = element_text(size = 20))
 ```
+
+```{r}
+#| echo: false
+#| fig-cap:  
+#| label: fig-density
+penguins |>
+  ggplot(aes(x = bill_length_mm, color = species, fill = species)) +
+  geom_density(alpha=0.4) +
+  geom_histogram(aes(y = stat(density)), alpha=0.4, position = "identity") +
+  theme(text = element_text(size = 20))
+```
+
+ 
+:::
 :::
 ::: {.column width="40%" .incremental}
 - data and aesthetic mappings
-- geometric objects
+  - x/y(/z)
+  - color
+  - fill
+  - alpha
+  - group
+  - shape/linetype
+  - size/area
+- (layers of) geometric objects
 - scales
 - facet specification
 - statistical transformations
@@ -214,7 +244,7 @@ Coordinate systems
 
 Plotting for yourself vs. plotting to **communicate**.
 
-## Penguins
+## Consistent Colors
 
 ```{r}
 penguins |>
@@ -227,7 +257,7 @@ penguins |>
 
 ![](./img/lter_penguins.png){width=30% #small-penguins}
 
-## Penguins
+## Direct Labels
 
 ```{r}
 #| code-fold: true
@@ -265,7 +295,7 @@ penguins |>
 
 ![](./img/lter_penguins.png){width=30% #small-penguins}
 
-## Speaking of Color
+## Inclusive and Truthful Colors
 
 :::{layout="[[1,1],[1,1]]" #fig-colorpanel .fig-colorpanel}
 ```{r}
@@ -324,7 +354,7 @@ Sys.sleep(0.1)
 render_snapshot(clear = TRUE)
 ```
 
- 
+Your choice of color palettes matters.
 :::
 
 ::: {.notes}
@@ -350,57 +380,100 @@ More, see; <https://bids.github.io/colormap/>
 
 ## Tidy Data
 
-@wickhamTidyData2014
+![](img/2022-06-07-13-13-52.png){.fr}
+
+- by Hadley Wickhame [@wickhamTidyData2014]
+- derived from Codd's Third Normal Form [@coddFurtherNormalizationData1972]
+- allows the direct mapping between aesthetics and variables
+
+### Every row is a penguin
+
+![Figure from @grolemundDataScienceImport2017](img/2022-06-07-11-20-44.png)
 
 ## Tidy Data
 
-notes:
 
+::: {.incremental}
 - not always the most space effective
 - not being in a tidy format is not necessarily bad
 - but tidy works well with ggplot
 - and allows you to think about your data more effectively
-- knowing the rules allows you to break them
-  with purpose
 - similarities: feature matrix / vector in machine learning
   are in a tidy format!
+- knowing the rules allows you to break them
+  with purpose
+:::
 
-# Other Implementations
+
+## Break the Rules
+
+```{r} 
+penguins |> 
+  select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |> 
+  pivot_longer(-species) |> 
+  head() |> 
+  kable()
+```
+
+
+## Break the Rules
+
+```{r} 
+penguins |> 
+  select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |> 
+  pivot_longer(-species) |> 
+  ggplot(aes(value, fill = species)) +
+  geom_density(alpha = 0.4) +
+  facet_wrap(~name, scales="free") +
+  scale_fill_manual(values = c(Chinstrap = "#c55bca",
+                                Gentoo    = "#047076",
+                                Adelie    = "#ff6900"))
+```
+
+
+# Other Implementations of Grammars
 
 ## Python: plotnine
 
-```{python}
-#| label: fig-plotnine
-#| eval: false
-from plotnine import *
-(
-ggplot(r.penguins, aes('bill_length_mm', 'bill_depth_mm'))
- + geom_point()
-)
+```{python} 
+#| include: false
 ```
 
-![](./img/plotnine.png)
+```{python}
+#| label: fig-plotnine
+#| fig-cap: A plotnine plot.
+import warnings
+from plotnine import *
+warnings.simplefilter("ignore")
+
+print(
+ggplot(r.penguins, aes('bill_length_mm', 'bill_depth_mm', color='species'))
+ + geom_point()
+);
+```
+
+
+:::footer
+<https://plotnine.readthedocs.io/en/stable/index.html>
+:::
+
 
 ## Python: Seaborn (nextgen)
 
-```{python}
+```{python seaborn}
 #| label: fig-seaborn
-#| eval: false
-import seaborn as sns
+#| fig-cap: A seaborn plot.
 import seaborn.objects as so
-from palmerpenguins import load_penguins
-penguins = load_penguins()
-sns.set_theme(style="whitegrid")
 
 (
-so.Plot(penguins, "bill_length_mm", "bill_depth_mm", color="species")
+so.Plot(r.penguins, "bill_length_mm", "bill_depth_mm", color="species")
     .add(so.Scatter(fillalpha=1))
-    .configure(figsize=(7,4))
-    .save("img/seaborn.png")
-)
+).show();
 ```
 
-![](./img/seaborn.png)
+:::footer
+<https://seaborn.pydata.org/nextgen/>
+:::
 
 ## Julia: Gadfly 
 
@@ -414,14 +487,9 @@ draw(img, p)
 
 ![Gadfly plot](./img/julia_plot.svg)
 
-## Common themes
-
-e.g. ggplot and seaborn:
-
-- geom -> mark
-- stat -> stat
-- position -> move
-- scale -> scale
+:::footer
+<http://gadflyjl.org/stable/>
+:::
 
 # Resources
 
@@ -459,13 +527,13 @@ e.g. ggplot and seaborn:
 ![See you on the otter slide.](https://media.giphy.com/media/Ov2S60rDmVTMc/giphy.gif){#otterslide}
 
 ::: profile
--   [jmbuhr](https://github.com/jmbuhr.de){.bi-github}
--   [jmbuhr.de](https://jmbuhr.de){.bi-house}
--   [jannikbuhr](https://twitter.com/jannikbuhr){.bi-twitter}
--   [jmbuhr](https://www.linkedin.com/in/jmbuhr/){.bi-linkedin}
+- [jmbuhr](https://github.com/jmbuhr.de){.bi-github}
+- [jmbuhr.de](https://jmbuhr.de){.bi-house}
+- [jannikbuhr](https://twitter.com/jannikbuhr){.bi-twitter}
+- [jmbuhr](https://www.linkedin.com/in/jmbuhr/){.bi-linkedin}
 :::
 
-[Slides:]{#qrcode}
+[Slides: [github.com/jmbuhr/hits-scientific-seminar-datavis](https:/github.com/jmbuhr/hits-scientific-seminar-datavis)]{#qrcode}
 :::
 
 ```{=html}
@@ -474,16 +542,13 @@ figcaption {
     text-align: center;
 }
 </style>
-```
-```{=html}
 <script src="./www/qrcode.min.js"></script>
-```
-```{=html}
 <script type="text/javascript">
 let elem = document.getElementById("qrcode")
 new QRCode(elem, "https:/github.com/jmbuhr/hits-scientific-seminar-datavis");
 </script>
 ```
+
 ## References
 
 ::: {#refs}

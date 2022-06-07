@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.442">
+<meta name="generator" content="quarto-0.9.393">
 <meta name="author" content="Jannik Buhr">
 <meta name="dcterms.date" content="2022-06-20">
 <title>The Duality of Data Visualization</title>
@@ -441,7 +441,7 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside></section><section><section id="lets-go-on-a-trip" class="title-slide slide level1 center"><h1>Let’s go on a trip!</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-1_5eee9b51e99e191f84e375a4f2589ddb">
+<div class="cell">
 
 </div>
 </section><section id="palmer-archipelago" class="slide level2" data-background-iframe="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572669.243839383!2d-66.65912791297224!3d-64.07273637748037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc78dd6dc38c572b%3A0xe609367aeed33087!2sPalmer%20Archipelago!5e0!3m2!1sen!2sde!4v1648136525579!5m2!1sen!2sde"><h2>Palmer Archipelago</h2>
@@ -454,7 +454,7 @@
 <aside><div>
 <p>Artwork by @allisonhorst</p>
 </div></aside></section><section id="penguins-1" class="slide level2"><h2>Penguins!</h2>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-2_566438251cf34c59c70365ab5d09cc78">
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-1_364008c2313518c8be106bb9533d67aa">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">head</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table>
@@ -546,11 +546,11 @@
 <div class="footer">
 <p><span class="citation" data-cites="R-palmerpenguins">(<a href="#/ref-R-palmerpenguins" role="doc-biblioref" onclick="return false;">Horst, Hill, and Gorman 2020</a>)</span></p>
 </div>
-</section><section id="penguins-2" class="slide level2"><h2>Penguins</h2>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-3_e6d1ef6c3faf3e8cf363823de6d3cd32">
+</section><section id="grammar-of-graphics" class="slide level2"><h2>Grammar of Graphics</h2>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-2_4f0b468a81bdd75b34d2dd28eacbd251">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="penguins-3" class="slide level2"><h2>Penguins</h2>
+</section><section id="grammar-of-graphics-1" class="slide level2"><h2>Grammar of Graphics</h2>
 <div class="cell" data-hash="index_cache/revealjs/fig-penguins_1f9463aef5a6d862a6503ee17388bc0a">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -564,32 +564,69 @@
 </div>
 </div>
 </div>
-</section><section id="penguins-4" class="slide level2"><h2>Penguins</h2>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-4_c38c39bb5179530c47511c08694de8ef">
+</section><section id="grammar-of-graphics-2" class="slide level2"><h2>Grammar of Graphics</h2>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-3_a7595308cdf4ffbe3b34e8346551992d">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-4-1.png" class="img-fluid r-stretch" width="960"></section><section id="penguins-5" class="slide level2"><h2>Penguins</h2>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-5_ccd9bdbe358883ff8a809cc8bae98d5b">
+<img data-src="index_files/figure-revealjs/unnamed-chunk-3-1.png" class="img-fluid r-stretch" width="960"></section><section id="grammar-of-graphics-3" class="slide level2"><h2>Grammar of Graphics</h2>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-4_18305ea39120259c1f17babab2e30ad9">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-5-1.png" class="img-fluid r-stretch" width="960"></section><section id="the-principles-of-a-plot" class="slide level2"><h2>The Principles of a Plot</h2>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-4-1.png" class="img-fluid r-stretch" width="960"></section><section id="elements-of-a-plot" class="slide level2"><h2>Elements of a Plot</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-6_da25321a4b6d79a10127f3050f9077c2">
+<div class="quarto-layout-panel">
+<figure><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" data-hash="index_cache/revealjs/fig-facet_ffe6ee424bebe8040a081b763d470f7a" style="flex-basis: 83.3%;justify-content: center;">
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-6-1.png" class="img-fluid" width="960"></p>
+<div id="fig-facet" class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="index_files/figure-revealjs/fig-facet-1.png" class="img-fluid" data-ref-parent="fig-principles" width="960"></p>
+<p></p><figcaption aria-hidden="true">(a) &nbsp;</figcaption><p></p>
+</figure>
 </div>
+</div>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 16.7%;justify-content: center;">
+<p>&nbsp;</p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" data-hash="index_cache/revealjs/fig-density_d0300eacd45f8992368be97548c3922c" style="flex-basis: 83.3%;justify-content: center;">
+<div class="cell-output-display">
+<div id="fig-density" class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="index_files/figure-revealjs/fig-density-1.png" class="img-fluid" data-ref-parent="fig-principles" width="960"></p>
+<p></p><figcaption aria-hidden="true">(b) &nbsp;</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 16.7%;justify-content: center;">
+<p>&nbsp;</p>
+</div>
+</div>
+<p></p><figcaption aria-hidden="true">Figure 2: &nbsp;</figcaption><p></p>
+</figure>
 </div>
 </div><div class="column" style="width:40%;">
 <ul>
-<li class="fragment">data and aesthetic mappings</li>
-<li class="fragment">geometric objects</li>
+<li class="fragment">data and aesthetic mappings
+<ul>
+<li class="fragment">x/y(/z)</li>
+<li class="fragment">color</li>
+<li class="fragment">fill</li>
+<li class="fragment">alpha</li>
+<li class="fragment">group</li>
+<li class="fragment">shape/linetype</li>
+<li class="fragment">size/area</li>
+</ul>
+</li>
+<li class="fragment">(layers of) geometric objects</li>
 <li class="fragment">scales</li>
 <li class="fragment">facet specification</li>
 <li class="fragment">statistical transformations</li>
@@ -600,7 +637,7 @@
 <div class="footer">
 <p><span class="citation" data-cites="wickhamLayeredGrammarGraphics2010a">(<a href="#/ref-wickhamLayeredGrammarGraphics2010a" role="doc-biblioref" onclick="return false;">Wickham 2010</a>)</span></p>
 </div>
-</section><section id="the-principles-of-a-plot-1" class="slide level2"><h2>The Principles of a Plot</h2>
+</section><section id="the-principles-of-a-plot" class="slide level2"><h2>The Principles of a Plot</h2>
 <div class="quarto-layout-panel">
 <figure><div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" data-hash="index_cache/revealjs/unnamed-chunk-7_46254443dc7c396eb50082645c17429f" style="flex-basis: 33.3%;justify-content: center;">
@@ -616,12 +653,12 @@
 </div>
 </div>
 </div>
-<p></p><figcaption aria-hidden="true">Figure 2: Coordinate systems</figcaption><p></p>
+<p></p><figcaption aria-hidden="true">Figure 3: Coordinate systems</figcaption><p></p>
 </figure>
 </div>
 </section></section><section><section id="the-duality-of-data-visualization" class="title-slide slide level1 center"><h1>The Duality of Data Visualization</h1>
 <p>Plotting for yourself vs.&nbsp;plotting to <strong>communicate</strong>.</p>
-</section><section id="penguins-6" class="slide level2"><h2>Penguins</h2>
+</section><section id="consistent-colors" class="slide level2"><h2>Consistent Colors</h2>
 <div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-9_1b53e1ec8263bf3c181063f5a7f7c34d">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
@@ -634,7 +671,7 @@
 </div>
 </div>
 <p><img data-src="./img/lter_penguins.png" id="small-penguins" class="img-fluid" style="width:30.0%"></p>
-</section><section id="penguins-7" class="slide level2"><h2>Penguins</h2>
+</section><section id="direct-labels" class="slide level2"><h2>Direct Labels</h2>
 <div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-10_750ecd8abe832e1b55b6721590d65bd0">
 <details><summary>Code</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>steve <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Chinstrap"</span>, bill_length_mm <span class="sc">&gt;</span> <span class="dv">57</span>)</span>
@@ -671,7 +708,7 @@
 </div>
 </div>
 <p><img data-src="./img/lter_penguins.png" id="small-penguins" class="img-fluid" style="width:30.0%"></p>
-</section><section id="speaking-of-color" class="slide level2"><h2>Speaking of Color</h2>
+</section><section id="inclusive-and-truthful-colors" class="slide level2"><h2>Inclusive and Truthful Colors</h2>
 <div class="fig-colorpanel quarto-layout-panel">
 <figure><div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" data-hash="index_cache/revealjs/fig-blues_d9a5f8393b2d4f02face350846bc699b" style="flex-basis: 50.0%;justify-content: center;">
@@ -713,7 +750,7 @@
 </div>
 </div>
 </div>
-<p></p><figcaption aria-hidden="true">Figure 3: &nbsp;</figcaption><p></p>
+<p></p><figcaption aria-hidden="true">Figure 4: Your choice of color palettes matters.</figcaption><p></p>
 </figure>
 </div>
 <aside class="notes"><ul>
@@ -743,58 +780,134 @@ every unhappy family is unhappy in its own way”<br>
 <p><a href="https://tidyr.tidyverse.org/articles/tidy-data.html" class="uri">https://tidyr.tidyverse.org/articles/tidy-data.html</a></p>
 </div>
 </section><section id="tidy-data-1" class="slide level2"><h2>Tidy Data</h2>
-<p><span class="citation" data-cites="wickhamTidyData2014">Wickham (<a href="#/ref-wickhamTidyData2014" role="doc-biblioref" onclick="return false;">2014</a>)</span></p>
-</section><section id="tidy-data-2" class="slide level2"><h2>Tidy Data</h2>
-<p>notes:</p>
+<p><img data-src="img/2022-06-07-13-13-52.png" class="fr img-fluid"></p>
 <ul>
-<li>not always the most space effective</li>
-<li>not being in a tidy format is not necessarily bad</li>
-<li>but tidy works well with ggplot</li>
-<li>and allows you to think about your data more effectively</li>
-<li>knowing the rules allows you to break them with purpose</li>
-<li>similarities: feature matrix / vector in machine learning are in a tidy format!</li>
-</ul></section></section><section><section id="other-implementations" class="title-slide slide level1 center"><h1>Other Implementations</h1>
+<li>by Hadley Wickhame <span class="citation" data-cites="wickhamTidyData2014">(<a href="#/ref-wickhamTidyData2014" role="doc-biblioref" onclick="return false;">Wickham 2014</a>)</span>
+</li>
+<li>derived from Codd’s Third Normal Form <span class="citation" data-cites="coddFurtherNormalizationData1972">(<a href="#/ref-coddFurtherNormalizationData1972" role="doc-biblioref" onclick="return false;">Codd 1972</a>)</span>
+</li>
+<li>allows the direct mapping between aesthetics and variables</li>
+</ul>
+<h3 id="every-row-is-a-penguin">Every row is a penguin</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="img/2022-06-07-11-20-44.png" class="img-fluid"></p>
+<p></p><figcaption aria-hidden="true">Figure from <span class="citation" data-cites="grolemundDataScienceImport2017">Grolemund and Wickham (<a href="#/ref-grolemundDataScienceImport2017" role="doc-biblioref" onclick="return false;">2017</a>)</span></figcaption><p></p>
+</figure>
+</div>
+</section><section id="tidy-data-2" class="slide level2"><h2>Tidy Data</h2>
+<div>
+<ul>
+<li class="fragment">not always the most space effective</li>
+<li class="fragment">not being in a tidy format is not necessarily bad</li>
+<li class="fragment">but tidy works well with ggplot</li>
+<li class="fragment">and allows you to think about your data more effectively</li>
+<li class="fragment">similarities: feature matrix / vector in machine learning are in a tidy format!</li>
+<li class="fragment">knowing the rules allows you to break them with purpose</li>
+</ul>
+</div>
+</section><section id="break-the-rules" class="slide level2"><h2>Break the Rules</h2>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-15_c8ee918d6d513ca0466a66be035b6485">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">select</span>(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>species) <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table>
+<thead><tr class="header">
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">bill_length_mm</td>
+<td style="text-align: right;">39.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">bill_depth_mm</td>
+<td style="text-align: right;">18.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">flipper_length_mm</td>
+<td style="text-align: right;">181.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">body_mass_g</td>
+<td style="text-align: right;">3750.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">bill_length_mm</td>
+<td style="text-align: right;">39.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: left;">bill_depth_mm</td>
+<td style="text-align: right;">17.4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section><section id="break-the-rules-1" class="slide level2"><h2>Break the Rules</h2>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-16_46a0c61691728a048732f886cda243d4">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">select</span>(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>species) <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales=</span><span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Chinstrap =</span> <span class="st">"#c55bca"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8"></a>                                <span class="at">Gentoo    =</span> <span class="st">"#047076"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9"></a>                                <span class="at">Adelie    =</span> <span class="st">"#ff6900"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.png" class="img-fluid r-stretch" width="960"></section></section><section><section id="other-implementations-of-grammars" class="title-slide slide level1 center"><h1>Other Implementations of Grammars</h1>
 
 </section><section id="python-plotnine" class="slide level2"><h2>Python: plotnine</h2>
-<div class="cell" data-hash="index_cache/revealjs/fig-plotnine_cbacb10d3f43757a2b99008bec34e3b2">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>(</span>
-<span id="cb8-3"><a href="#cb8-3"></a>ggplot(r.penguins, aes(<span class="st">'bill_length_mm'</span>, <span class="st">'bill_depth_mm'</span>))</span>
-<span id="cb8-4"><a href="#cb8-4"></a> <span class="op">+</span> geom_point()</span>
-<span id="cb8-5"><a href="#cb8-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="index_cache/revealjs/fig-plotnine_78babc7a225179c1c0e520a9e4117ece">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> warnings</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>warnings.simplefilter(<span class="st">"ignore"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="bu">print</span>(</span>
+<span id="cb10-6"><a href="#cb10-6"></a>ggplot(r.penguins, aes(<span class="st">'bill_length_mm'</span>, <span class="st">'bill_depth_mm'</span>, color<span class="op">=</span><span class="st">'species'</span>))</span>
+<span id="cb10-7"><a href="#cb10-7"></a> <span class="op">+</span> geom_point()</span>
+<span id="cb10-8"><a href="#cb10-8"></a>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-
-<img data-src="./img/plotnine.png" class="img-fluid r-stretch"></section><section id="python-seaborn-nextgen" class="slide level2"><h2>Python: Seaborn (nextgen)</h2>
-<div class="cell" data-hash="index_cache/revealjs/fig-seaborn_82df2bdaf2f39ed0ee88848c6c114735">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="im">import</span> seaborn.objects <span class="im">as</span> so</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
-<span id="cb9-4"><a href="#cb9-4"></a>penguins <span class="op">=</span> load_penguins()</span>
-<span id="cb9-5"><a href="#cb9-5"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
-<span id="cb9-6"><a href="#cb9-6"></a></span>
-<span id="cb9-7"><a href="#cb9-7"></a>(</span>
-<span id="cb9-8"><a href="#cb9-8"></a>so.Plot(penguins, <span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>, color<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb9-9"><a href="#cb9-9"></a>    .add(so.Scatter(fillalpha<span class="op">=</span><span class="dv">1</span>))</span>
-<span id="cb9-10"><a href="#cb9-10"></a>    .configure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">4</span>))</span>
-<span id="cb9-11"><a href="#cb9-11"></a>    .save(<span class="st">"img/seaborn.png"</span>)</span>
-<span id="cb9-12"><a href="#cb9-12"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<img data-src="index_files/figure-revealjs/fig-plotnine-1.png" class="img-fluid r-stretch quarto-figure-center" width="614"><p class="caption">Figure 5: A plotnine plot.</p><div class="footer">
+<p><a href="https://plotnine.readthedocs.io/en/stable/index.html" class="uri">https://plotnine.readthedocs.io/en/stable/index.html</a></p>
 </div>
+</section><section id="python-seaborn-nextgen" class="slide level2"><h2>Python: Seaborn (nextgen)</h2>
+<div class="cell" data-hash="index_cache/revealjs/fig-seaborn_b025d7cedcbd67bae64c434e9ac4c51e">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> seaborn.objects <span class="im">as</span> so</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>(</span>
+<span id="cb11-4"><a href="#cb11-4"></a>so.Plot(r.penguins, <span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>, color<span class="op">=</span><span class="st">"species"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    .add(so.Scatter(fillalpha<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb11-6"><a href="#cb11-6"></a>).show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="./img/seaborn.png" class="img-fluid r-stretch"></section><section id="julia-gadfly" class="slide level2"><h2>Julia: Gadfly</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">using</span> <span class="bu">Gadfly</span>, <span class="bu">PalmerPenguins</span>, <span class="bu">DataFrames</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>penguins <span class="op">=</span> <span class="fu">DataFrame</span>(PalmerPenguins.<span class="fu">load</span>());</span>
-<span id="cb10-3"><a href="#cb10-3"></a>p <span class="op">=</span> <span class="fu">plot</span>(penguins, x<span class="op">=:</span>bill_length_mm, y<span class="op">=:</span>bill_depth_mm, Geom.point);</span>
-<span id="cb10-4"><a href="#cb10-4"></a>img <span class="op">=</span> <span class="fu">SVG</span>(<span class="st">"img/julia_plot.svg"</span>, <span class="fl">14</span>cm, <span class="fl">8</span>cm)</span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">draw</span>(img, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<img data-src="index_files/figure-revealjs/fig-seaborn-1.png" class="img-fluid r-stretch quarto-figure-center" width="960"><p class="caption">Figure 6: A seaborn plot.</p><div class="footer">
+<p><a href="https://seaborn.pydata.org/nextgen/" class="uri">https://seaborn.pydata.org/nextgen/</a></p>
+</div>
+</section><section id="julia-gadfly" class="slide level2"><h2>Julia: Gadfly</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">using</span> <span class="bu">Gadfly</span>, <span class="bu">PalmerPenguins</span>, <span class="bu">DataFrames</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>penguins <span class="op">=</span> <span class="fu">DataFrame</span>(PalmerPenguins.<span class="fu">load</span>());</span>
+<span id="cb12-3"><a href="#cb12-3"></a>p <span class="op">=</span> <span class="fu">plot</span>(penguins, x<span class="op">=:</span>bill_length_mm, y<span class="op">=:</span>bill_depth_mm, Geom.point);</span>
+<span id="cb12-4"><a href="#cb12-4"></a>img <span class="op">=</span> <span class="fu">SVG</span>(<span class="st">"img/julia_plot.svg"</span>, <span class="fl">14</span>cm, <span class="fl">8</span>cm)</span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="fu">draw</span>(img, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="./img/julia_plot.svg" class="img-fluid r-stretch quarto-figure-center"><p class="caption">Gadfly plot</p></section><section id="common-themes" class="slide level2"><h2>Common themes</h2>
-<p>e.g.&nbsp;ggplot and seaborn:</p>
-<ul>
-<li>geom -&gt; mark</li>
-<li>stat -&gt; stat</li>
-<li>position -&gt; move</li>
-<li>scale -&gt; scale</li>
-</ul></section></section><section><section id="resources" class="title-slide slide level1 center"><h1>Resources</h1>
+<img data-src="./img/julia_plot.svg" class="img-fluid r-stretch quarto-figure-center"><p class="caption">Gadfly plot</p><div class="footer">
+<p><a href="http://gadflyjl.org/stable/" class="uri">http://gadflyjl.org/stable/</a></p>
+</div>
+</section></section><section><section id="resources" class="title-slide slide level1 center"><h1>Resources</h1>
 
 </section><section id="books-and-other-resources" class="slide level2"><h2>Books and other resources</h2>
 <div class="columns">
@@ -842,7 +955,7 @@ every unhappy family is unhappy in its own way”<br>
 </ul>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: center;">
-<p><span id="qrcode">Slides:</span></p>
+<p><span id="qrcode">Slides: <a href="https:/github.com/jmbuhr/hits-scientific-seminar-datavis">github.com/jmbuhr/hits-scientific-seminar-datavis</a></span></p>
 </div>
 </div>
 </div>
@@ -864,6 +977,12 @@ Cairo, Alberto. 2019. <em>How <span>Charts Lie</span>: <span>Getting Smarter</sp
 </div>
 <div id="ref-changGraphicsCookbook2nd" class="csl-entry" role="doc-biblioentry">
 Chang, Winston. n.d. <em>R <span>Graphics Cookbook</span>, 2nd Edition</em>. <a href="https://r-graphics.org/">https://r-graphics.org/</a>.
+</div>
+<div id="ref-coddFurtherNormalizationData1972" class="csl-entry" role="doc-biblioentry">
+Codd, E F. 1972. <span>“Further <span>Normalization</span> of the <span>Data Base Relational Model</span>,”</span> 34.
+</div>
+<div id="ref-grolemundDataScienceImport2017" class="csl-entry" role="doc-biblioentry">
+Grolemund, Garrett, and Hadley Wickham. 2017. <em>R for <span>Data Science</span>: <span>Import</span>, <span>Tidy</span>, <span>Transform</span>, <span>Visualize</span>, and <span>Model Data</span></em>. 1st edition. <span>Sebastopol, CA</span>: <span>O’Reilly Media</span>.
 </div>
 <div id="ref-R-palmerpenguins" class="csl-entry" role="doc-biblioentry">
 Horst, Allison, Alison Hill, and Kristen Gorman. 2020. <em>Palmerpenguins: <span>Palmer</span> Archipelago (Antarctica) Penguin Data</em>. Manual.

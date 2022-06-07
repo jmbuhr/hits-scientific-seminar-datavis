@@ -66,4 +66,6 @@ blockquote {
   font-family: Unna;
 }
 
-
+.fr {
+  float: right;
+}
