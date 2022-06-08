@@ -770,7 +770,17 @@
       }</style></aside><div class="footer">
 <p>More, see; <a href="https://bids.github.io/colormap/" class="uri">https://bids.github.io/colormap/</a></p>
 </div>
-</section></section><section><section id="tidy-data" class="title-slide slide level1 center"><h1>Tidy Data</h1>
+</section><section id="simplify-but-dont-oversimplify" class="slide level2"><h2>Simplify, but Don’t Oversimplify</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-15-1.png" class="img-fluid r-stretch" width="960"></section><section id="simplify-but-dont-oversimplify-1" class="slide level2"><h2>Simplify, but Don’t Oversimplify</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.png" class="img-fluid r-stretch" width="960"></section><section id="simplify-but-dont-oversimplify-2" class="slide level2"><h2>Simplify, but Don’t Oversimplify</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-17-1.png" class="img-fluid r-stretch" width="960"></section><section id="simplify-but-dont-oversimplify-3" class="slide level2"><h2>Simplify, but Don’t Oversimplify</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-18-1.png" class="img-fluid r-stretch" width="960"></section><section id="simplify-but-dont-oversimplify-4" class="slide level2"><h2>Simplify, but Don’t Oversimplify</h2>
+
+<img data-src="img/2022-06-08-09-08-06.png" class="img-fluid r-stretch quarto-figure-center"><p class="caption"><span class="citation" data-cites="artworkAllisonHorst"><span>“Artwork by @Allison_horst”</span> (<a href="#/ref-artworkAllisonHorst" role="doc-biblioref" onclick="return false;">2020</a>)</span></p></section></section><section><section id="tidy-data" class="title-slide slide level1 center"><h1>Tidy Data</h1>
 <blockquote>
 <p>“Happy families are all alike;<br>
 every unhappy family is unhappy in its own way”<br>
@@ -806,7 +816,7 @@ every unhappy family is unhappy in its own way”<br>
 </ul>
 </div>
 </section><section id="break-the-rules" class="slide level2"><h2>Break the Rules</h2>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-15_c8ee918d6d513ca0466a66be035b6485">
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-19_37660a0a5eb8d245a1bd25ab841b24cd">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">select</span>(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) <span class="sc">|&gt;</span> </span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>species) <span class="sc">|&gt;</span> </span>
@@ -855,7 +865,7 @@ every unhappy family is unhappy in its own way”<br>
 </div>
 </div>
 </section><section id="break-the-rules-1" class="slide level2"><h2>Break the Rules</h2>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-16_46a0c61691728a048732f886cda243d4">
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-20_451c78f0addba43222fdd972ddd820be">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">select</span>(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) <span class="sc">|&gt;</span> </span>
 <span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>species) <span class="sc">|&gt;</span> </span>
@@ -867,7 +877,7 @@ every unhappy family is unhappy in its own way”<br>
 <span id="cb9-9"><a href="#cb9-9"></a>                                <span class="at">Adelie    =</span> <span class="st">"#ff6900"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.png" class="img-fluid r-stretch" width="960"></section></section><section><section id="other-implementations-of-grammars" class="title-slide slide level1 center"><h1>Other Implementations of Grammars</h1>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-20-1.png" class="img-fluid r-stretch" width="960"></section></section><section><section id="other-implementations-of-grammars" class="title-slide slide level1 center"><h1>Other Implementations of Grammars</h1>
 
 </section><section id="python-plotnine" class="slide level2"><h2>Python: plotnine</h2>
 <div class="cell" data-hash="index_cache/revealjs/fig-plotnine_78babc7a225179c1c0e520a9e4117ece">
@@ -894,7 +904,7 @@ every unhappy family is unhappy in its own way”<br>
 <span id="cb11-6"><a href="#cb11-6"></a>).show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/fig-seaborn-1.png" class="img-fluid r-stretch quarto-figure-center" width="960"><p class="caption">Figure 6: A seaborn plot.</p><div class="footer">
+<img data-src="index_files/figure-revealjs/fig-seaborn-3.png" class="img-fluid r-stretch quarto-figure-center" width="960"><p class="caption">Figure 6: A seaborn plot.</p><div class="footer">
 <p><a href="https://seaborn.pydata.org/nextgen/" class="uri">https://seaborn.pydata.org/nextgen/</a></p>
 </div>
 </section><section id="julia-gadfly" class="slide level2"><h2>Julia: Gadfly</h2>
@@ -971,6 +981,9 @@ new QRCode(elem, "https:/github.com/jmbuhr/hits-scientific-seminar-datavis");
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Allaire_Quarto_2022" class="csl-entry" role="doc-biblioentry">
 Allaire, J. J., Charles Teague, Carlos Scheidegger, Yihui Xie, and Christophe Dervieux. 2022. <em><span>Quarto</span></em> (version 0.3). <a href="https://doi.org/10.5281/zenodo.5960048">https://doi.org/10.5281/zenodo.5960048</a>.
+</div>
+<div id="ref-artworkAllisonHorst" class="csl-entry" role="doc-biblioentry">
+<span>“Artwork by @Allison_horst.”</span> 2020. https://github.com/allisonhorst/stats-illustrations.
 </div>
 <div id="ref-cairoHowChartsLie2019" class="csl-entry" role="doc-biblioentry">
 Cairo, Alberto. 2019. <em>How <span>Charts Lie</span>: <span>Getting Smarter</span> about <span>Visual Information</span></em>. Illustrated edition. <span>New York</span>: <span>W. W. Norton &amp; Company</span>.

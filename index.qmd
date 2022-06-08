@@ -35,6 +35,8 @@ execute:
   warning: false
   cache: true
 engine: knitr
+# filters:
+#   - fix-citation-links.lua
 
 ---
 
@@ -80,7 +82,7 @@ library(rayshader)
 library(knitr)
 library(ggtext)
 
-reticulate::use_condaenv("base")
+# reticulate::use_condaenv("base")
 
 data(volcano)
 colnames(volcano) <- 1:ncol(volcano)
@@ -89,7 +91,7 @@ volcano <- volcano |>
   mutate(y = 1:n()) |> 
   pivot_longer(-y, names_to = "x", names_transform = parse_number)
 
-# theme_set(theme_minimal())
+theme_set(theme_minimal() %+% theme(panel.background = element_rect(color = "black")))
 ```
 
 ## Palmer Archipelago {background-iframe="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572669.243839383!2d-66.65912791297224!3d-64.07273637748037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc78dd6dc38c572b%3A0xe609367aeed33087!2sPalmer%20Archipelago!5e0!3m2!1sen!2sde!4v1648136525579!5m2!1sen!2sde"}
@@ -366,6 +368,57 @@ Your choice of color palettes matters.
 :::footer
 More, see; <https://bids.github.io/colormap/>
 :::
+
+## Simplify, but Don't Oversimplify
+
+```{r}
+#| echo: false
+datasauRus::box_plots |> 
+  pivot_longer(everything()) |> 
+  ggplot(aes(name, value)) +
+  geom_boxplot() +
+  scale_x_discrete(breaks = 0, name = "")
+```
+
+
+## Simplify, but Don't Oversimplify
+
+```{r}
+#| echo: false
+datasauRus::box_plots |> 
+  pivot_longer(everything()) |> 
+  ggplot(aes(name, value)) +
+  geom_boxplot() +
+  geom_jitter(alpha = 0.2) +
+  scale_x_discrete(breaks = 0, name = "")
+```
+
+## Simplify, but Don't Oversimplify
+
+```{r}
+#| echo: false
+datasauRus::box_plots |> 
+  pivot_longer(everything()) |> 
+  ggplot(aes(name, value)) +
+  geom_violin() +
+  scale_x_discrete(breaks = 0, name = "")
+```
+ 
+## Simplify, but Don't Oversimplify
+
+```{r}
+#| echo: false
+datasauRus::box_plots |> 
+  pivot_longer(everything()) |> 
+  ggplot(aes(name, value)) +
+  ggbeeswarm::geom_quasirandom(size = 0.2) +
+  scale_x_discrete(breaks = 0, name = "")
+```
+
+
+## Simplify, but Don't Oversimplify
+
+![@artworkAllisonHorst](img/2022-06-08-09-08-06.png)
 
 
 # Tidy Data

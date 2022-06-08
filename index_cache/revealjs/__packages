@@ -8,6 +8,6 @@ dplyr
 stringr
 forcats
 palmerpenguins
-knitr
 rayshader
+knitr
 ggtext
