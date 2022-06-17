@@ -211,7 +211,7 @@ penguins |>
 :::{#fig-pie layout=[[1,2]]}
 ```{r} 
 #| echo: false
-cols <- c('#0292D8', '#F7EA39', '#C4B632')
+cols <- c('#0088c2', '#ffcc00', '#cfa500')
 data <- tibble(
   value = c(280, 60, 20),
   id    = fct_inorder(c('Sky', 'Sunny side of pyramid', 'Shady side of pyramid'))
