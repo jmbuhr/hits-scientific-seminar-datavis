@@ -441,6 +441,8 @@ datasauRus::box_plots |>
 
 ### Every row is a penguin
 
+### Every column is a property of penguins
+
 ![Figure from @grolemundDataScienceImport2017](img/2022-06-07-11-20-44.png)
 
 ## Tidy Data
@@ -463,7 +465,7 @@ datasauRus::box_plots |>
 ```{r} 
 penguins |> 
   select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |> 
-  pivot_longer(-species) |> 
+  pivot_longer(-species) |>
   head() |> 
   kable()
 ```
@@ -495,6 +497,7 @@ penguins |>
 ```{python}
 #| label: fig-plotnine
 #| fig-cap: A plotnine plot.
+#| code-line-numbers: '6-7'
 import warnings
 from plotnine import *
 warnings.simplefilter("ignore")
@@ -516,6 +519,7 @@ ggplot(r.penguins, aes('bill_length_mm', 'bill_depth_mm', color='species'))
 ```{python seaborn}
 #| label: fig-seaborn
 #| fig-cap: A seaborn plot.
+#| code-line-numbers: '4-5'
 import seaborn.objects as so
 
 (
@@ -543,6 +547,49 @@ draw(img, p)
 :::footer
 <http://gadflyjl.org/stable/>
 :::
+
+# The greater context
+
+Jannik's predictions for the future
+
+![](https://media.giphy.com/media/0DYipdNqJ5n4GYATKL/giphy.gif)
+
+## Jannik's predictions for the future
+
+> "Somehow all plotting libraries converge into some object based language."\
+> --- \@tsuname
+
+. . .
+
+But: Objects are just implementation details
+
+:::footer
+<https://twitter.com/tsuname/status/1528162783975514112?s=20&t=5SBAhFLQ7VcINH5DLUDUFg>
+:::
+
+
+## Jannik's predictions for the future
+
+::: {.incremental}
+- modal systems $\gt$ monolithic structures
+- composition $\gt$ inheritance
+  - `python`: method chaining
+    ```python
+    baseplot(data).add(Scatter()).add(...)
+    ```
+  - `R`: operator overloading (or `|>`)
+    ```r
+    ggplot(data) + geom_scatter() + theme()
+    ```
+  - `haskell`: function composition
+    ```haskell
+    addScatter :: Plot -> Plot
+    addTheme . addScatter $ basePlot data
+    -- read: addTheme after  addScatter applied to ...
+    ```
+- declarative $\gt$ imperative
+:::
+
 
 # Resources
 

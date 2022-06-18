@@ -803,6 +803,7 @@ every unhappy family is unhappy in its own way”<br>
 <li>allows the direct mapping between aesthetics and variables</li>
 </ul>
 <h3 id="every-row-is-a-penguin">Every row is a penguin</h3>
+<h3 id="every-column-is-a-property-of-penguins">Every column is a property of penguins</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure><p><img data-src="img/2022-06-07-11-20-44.png" class="img-fluid"></p>
 <p></p><figcaption aria-hidden="true">Figure from <span class="citation" data-cites="grolemundDataScienceImport2017">Grolemund and Wickham (<a href="#/ref-grolemundDataScienceImport2017" role="doc-biblioref" onclick="return false;">2017</a>)</span></figcaption><p></p>
@@ -820,10 +821,10 @@ every unhappy family is unhappy in its own way”<br>
 </ul>
 </div>
 </section><section id="break-the-rules" class="slide level2"><h2>Break the Rules</h2>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-19_37660a0a5eb8d245a1bd25ab841b24cd">
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-19_e33dd191b9877dba2601199609f684dd">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">select</span>(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) <span class="sc">|&gt;</span> </span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>species) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>species) <span class="sc">|&gt;</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
 <span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -884,8 +885,8 @@ every unhappy family is unhappy in its own way”<br>
 <img data-src="index_files/figure-revealjs/unnamed-chunk-20-1.png" class="img-fluid r-stretch" width="960"></section></section><section><section id="other-implementations-of-grammars" class="title-slide slide level1 center"><h1>Other Implementations of Grammars</h1>
 
 </section><section id="python-plotnine" class="slide level2"><h2>Python: plotnine</h2>
-<div class="cell" data-hash="index_cache/revealjs/fig-plotnine_78babc7a225179c1c0e520a9e4117ece">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> warnings</span>
+<div class="cell" data-hash="index_cache/revealjs/fig-plotnine_165b1c827f1966b15f2dfbd5a869c9bd">
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="6-7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> warnings</span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a>warnings.simplefilter(<span class="st">"ignore"</span>)</span>
 <span id="cb10-4"><a href="#cb10-4"></a></span>
@@ -899,27 +900,70 @@ every unhappy family is unhappy in its own way”<br>
 <p><a href="https://plotnine.readthedocs.io/en/stable/index.html" class="uri">https://plotnine.readthedocs.io/en/stable/index.html</a></p>
 </div>
 </section><section id="python-seaborn-nextgen" class="slide level2"><h2>Python: Seaborn (nextgen)</h2>
-<div class="cell" data-hash="index_cache/revealjs/fig-seaborn_b025d7cedcbd67bae64c434e9ac4c51e">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> seaborn.objects <span class="im">as</span> so</span>
+<div class="cell" data-hash="index_cache/revealjs/fig-seaborn_f60ec43564d1e14fa359ba43c5efd429">
+<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="4-5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> seaborn.objects <span class="im">as</span> so</span>
 <span id="cb11-2"><a href="#cb11-2"></a></span>
 <span id="cb11-3"><a href="#cb11-3"></a>(</span>
 <span id="cb11-4"><a href="#cb11-4"></a>so.Plot(r.penguins, <span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>, color<span class="op">=</span><span class="st">"species"</span>)</span>
 <span id="cb11-5"><a href="#cb11-5"></a>    .add(so.Scatter(fillalpha<span class="op">=</span><span class="dv">1</span>))</span>
 <span id="cb11-6"><a href="#cb11-6"></a>).show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/home/jannik/miniconda3/lib/python3.9/site-packages/numpy/lib/function_base.py:1292: RuntimeWarning: invalid value encountered in subtract
+  a = op(a[slice1], a[slice2])</code></pre>
+</div>
 
 </div>
-<img data-src="index_files/figure-revealjs/fig-seaborn-3.png" class="img-fluid r-stretch quarto-figure-center" width="960"><p class="caption">Figure 6: A seaborn plot.</p><div class="footer">
+<img data-src="index_files/figure-revealjs/fig-seaborn-1.png" class="img-fluid r-stretch quarto-figure-center" width="960"><p class="caption">Figure 6: A seaborn plot.</p><div class="footer">
 <p><a href="https://seaborn.pydata.org/nextgen/" class="uri">https://seaborn.pydata.org/nextgen/</a></p>
 </div>
 </section><section id="julia-gadfly" class="slide level2"><h2>Julia: Gadfly</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">using</span> <span class="bu">Gadfly</span>, <span class="bu">PalmerPenguins</span>, <span class="bu">DataFrames</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>penguins <span class="op">=</span> <span class="fu">DataFrame</span>(PalmerPenguins.<span class="fu">load</span>());</span>
-<span id="cb12-3"><a href="#cb12-3"></a>p <span class="op">=</span> <span class="fu">plot</span>(penguins, x<span class="op">=:</span>bill_length_mm, y<span class="op">=:</span>bill_depth_mm, Geom.point);</span>
-<span id="cb12-4"><a href="#cb12-4"></a>img <span class="op">=</span> <span class="fu">SVG</span>(<span class="st">"img/julia_plot.svg"</span>, <span class="fl">14</span>cm, <span class="fl">8</span>cm)</span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="fu">draw</span>(img, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">using</span> <span class="bu">Gadfly</span>, <span class="bu">PalmerPenguins</span>, <span class="bu">DataFrames</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>penguins <span class="op">=</span> <span class="fu">DataFrame</span>(PalmerPenguins.<span class="fu">load</span>());</span>
+<span id="cb13-3"><a href="#cb13-3"></a>p <span class="op">=</span> <span class="fu">plot</span>(penguins, x<span class="op">=:</span>bill_length_mm, y<span class="op">=:</span>bill_depth_mm, Geom.point);</span>
+<span id="cb13-4"><a href="#cb13-4"></a>img <span class="op">=</span> <span class="fu">SVG</span>(<span class="st">"img/julia_plot.svg"</span>, <span class="fl">14</span>cm, <span class="fl">8</span>cm)</span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="fu">draw</span>(img, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <img data-src="./img/julia_plot.svg" class="img-fluid r-stretch quarto-figure-center"><p class="caption">Gadfly plot</p><div class="footer">
 <p><a href="http://gadflyjl.org/stable/" class="uri">http://gadflyjl.org/stable/</a></p>
+</div>
+</section></section><section><section id="the-greater-context" class="title-slide slide level1 center"><h1>The greater context</h1>
+<p>Jannik’s predictions for the future</p>
+
+<img data-src="https://media.giphy.com/media/0DYipdNqJ5n4GYATKL/giphy.gif" class="img-fluid r-stretch"></section><section id="janniks-predictions-for-the-future" class="slide level2"><h2>Jannik’s predictions for the future</h2>
+<blockquote>
+<p>“Somehow all plotting libraries converge into some object based language.”<br>
+— @tsuname</p>
+</blockquote>
+<div class="fragment">
+<p>But: Objects are just implementation details</p>
+<div class="footer">
+<p><a href="https://twitter.com/tsuname/status/1528162783975514112?s=20&amp;t=5SBAhFLQ7VcINH5DLUDUFg" class="uri">https://twitter.com/tsuname/status/1528162783975514112?s=20&amp;t=5SBAhFLQ7VcINH5DLUDUFg</a></p>
+</div>
+</div>
+</section><section id="janniks-predictions-for-the-future-1" class="slide level2"><h2>Jannik’s predictions for the future</h2>
+<div>
+<ul>
+<li class="fragment">modal systems <span class="math inline">\(\gt\)</span> monolithic structures</li>
+<li class="fragment">composition <span class="math inline">\(\gt\)</span> inheritance
+<ul>
+<li class="fragment">
+<p><code>python</code>: method chaining</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>baseplot(data).add(Scatter()).add(...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</li>
+<li class="fragment">
+<p><code>R</code>: operator overloading (or <code>|&gt;</code>)</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(data) <span class="sc">+</span> <span class="fu">geom_scatter</span>() <span class="sc">+</span> <span class="fu">theme</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</li>
+<li class="fragment">
+<p><code>haskell</code>: function composition</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource haskell number-lines code-with-copy"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1"></a><span class="ot">addScatter ::</span> <span class="dt">Plot</span> <span class="ot">-&gt;</span> <span class="dt">Plot</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>addTheme <span class="op">.</span> addScatter <span class="op">$</span> basePlot <span class="kw">data</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co">-- read: addTheme after  addScatter applied to ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</li>
+</ul>
+</li>
+<li class="fragment">declarative <span class="math inline">\(\gt\)</span> imperative</li>
+</ul>
 </div>
 </section></section><section><section id="resources" class="title-slide slide level1 center"><h1>Resources</h1>
 
