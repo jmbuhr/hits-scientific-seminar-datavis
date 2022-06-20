@@ -35,8 +35,6 @@ execute:
   warning: false
   cache: true
 engine: knitr
-# filters:
-#   - fix-citation-links.lua
 
 ---
 
@@ -54,9 +52,9 @@ engine: knitr
 :::
 
 ::: {.column .incremental width="60%"}
--   basesd on "The Grammar of Graphics" by Leland Wilkinson
--   popularized by Hadley Wickham with the R packge `ggplot2`
--   No monolitic plotting functions but instead a set of blocks to combine
+-   based on "The Grammar of Graphics" by Leland Wilkinson
+-   popularized by Hadley Wickham with the R package `ggplot2`
+-   No monolithic plotting functions but instead a set of blocks to combine
 -   powerful
 -   iterative
 -   expressive
@@ -65,10 +63,6 @@ engine: knitr
 
 ::: footer
 [@wilkinsonGrammarGraphics2005a; @wickhamLayeredGrammarGraphics2010a]
-:::
-
-::: notes
--> frees us from constraints, allows to create any plot possible, allows quick iterai
 :::
 
 # Let's go on a trip!
@@ -111,40 +105,51 @@ Artwork by \@allisonhorst
 ## Penguins!
 
 ```{r}
+#| label: penguins-set
+#| classes: 'penguins-table'
 penguins |> head() |> kable()
 ```
+
+![](img/2022-06-20-11-16-09.png){width=40%}
+
+::: aside
+Artwork by \@allisonhorst
+:::
 
 ::: footer
 [@R-palmerpenguins]
 :::
 
-## Grammar of Graphics
+## A Grammar of Graphics
 
 ```{r}
 #| eval: false
 penguins
 ```
 
-## Grammar of Graphics
+## A Grammar of Graphics
 
 ```{r fig-penguins}
 #| output-location: fragment
 #| fig-cap: Penguins!
+#| code-line-numbers: '2'
 penguins |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm))
 ```
 
-## Grammar of Graphics
+## A Grammar of Graphics
 
 ```{r}
+#| code-line-numbers: '3'
 penguins |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point()
 ```
 
-## Grammar of Graphics
+## A Grammar of Graphics
 
 ```{r}
+#| code-line-numbers: '2'
 penguins |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
   geom_point()
@@ -154,34 +159,23 @@ penguins |>
   
 ::: {.columns}
 ::: {.column width="60%"}
-::: {#fig-principles layout=[[5,-1],[5,-1]]}
 ```{r}
-#| echo: false
-#| fig-cap:  
-#| label: fig-facet
+#| echo: true
 penguins |>
-  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
-  geom_smooth(aes(lty = island), method = "lm", se = FALSE) +
-  geom_smooth(aes(group = island), method = "lm", se = FALSE, color = "black") +
+  ggplot(aes(x = bill_length_mm,
+             y = bill_depth_mm,
+             color = species)) +
+  geom_smooth(method = lm, se = FALSE) +
+  geom_smooth(aes(group = island),
+                  method = lm,
+                  se = FALSE,
+                  linetype = 2,
+                  color = "black") +
   geom_point(aes(shape=sex)) +
   facet_wrap(~island, labeller=label_both) +
   scale_shape(na.value = 15) +
   theme(text = element_text(size = 20))
 ```
-
-```{r}
-#| echo: false
-#| fig-cap:  
-#| label: fig-density
-penguins |>
-  ggplot(aes(x = bill_length_mm, color = species, fill = species)) +
-  geom_density(alpha=0.4) +
-  geom_histogram(aes(y = stat(density)), alpha=0.4, position = "identity") +
-  theme(text = element_text(size = 20))
-```
-
- 
-:::
 :::
 ::: {.column width="40%" .incremental}
 - data and aesthetic mappings
@@ -205,12 +199,51 @@ penguins |>
 [@wickhamLayeredGrammarGraphics2010a]
 :::
 
+## Elements of a Plot
+  
+::: {.columns}
+::: {.column width="60%"}
+```{r}
+#| echo: true
+penguins |>
+  ggplot(aes(x = bill_length_mm,
+             color = species,
+             fill = species)) +
+  geom_histogram(alpha=0.4,
+                 position = "identity") +
+  theme(text = element_text(size = 20))
+```
+:::
+::: {.column width="40%"}
+- data and aesthetic mappings
+  - x/y(/z)
+  - color
+  - fill
+  - alpha
+  - group
+  - shape/linetype
+  - size/area
+- (layers of) geometric objects
+- scales
+- facet specification
+- statistical transformations
+- the coordinate system
+:::
+:::
 
-## The Principles of a Plot
 
-:::{#fig-pie layout=[[1,2]]}
+:::footer
+[@wickhamLayeredGrammarGraphics2010a]
+:::
+
+## Elements of a Plot
+
+:::{#fig-pie layout=[[1,2.5]]}
 ```{r} 
 #| echo: false
+#| fig-width: 4
+#| fig-heigth: 14
+#| fig-cap: 'A stacked bar chart'
 cols <- c('#0088c2', '#ffcc00', '#cfa500')
 data <- tibble(
   value = c(280, 60, 20),
@@ -229,6 +262,7 @@ plt +
 :::fragment
 ```{r}
 #| echo: false
+#| fig-cap: '`+ coord_polar()`'
 plt +
   coord_polar(clip = "off", theta = "y",
               start = 2.45) +
@@ -251,6 +285,15 @@ Plotting for yourself vs. plotting to **communicate**.
 ```{r}
 penguins |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point()
+```
+
+## Consistent Colors
+
+```{r}
+#| code-line-numbers: '4-6'
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
   geom_point() +
   scale_color_manual(values = c(Chinstrap = "#c55bca",
                                 Gentoo    = "#047076",
@@ -262,40 +305,44 @@ penguins |>
 ## Direct Labels
 
 ```{r}
-#| code-fold: true
-steve <- penguins |>
+#| echo: false
+Brenda <- penguins |>
   filter(species == "Chinstrap", bill_length_mm > 57)
 
 penguins |>
+  filter(!is.na(sex)) |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species, group = species)) +
-  geom_smooth(method = "lm", se = FALSE, alpha = 0.6) +
-  geom_point(aes(shape = species), size = 1.4) +
+  geom_smooth(method = lm, se = FALSE, alpha = 0.6) +
+  geom_point(aes(shape = sex), size = 1.4) +
   scale_color_manual(values = c(Chinstrap = "#c55bca",
                                 Gentoo    = "#047076",
                                 Adelie    = "#ff6900")) +
-  guides(shape = "none", color = "none") +
+  guides(color = "none") +
   labs(x = "Bill length [mm]",
        y = "Bill depth [mm]",
-       title = "Penguins of the Palmer Archipelago",
+       title = "One of these penguins is not like the others",
        subtitle = "Species: <span style='color: #c55bca'>**Chinstrap**</span>, <span style='color: #047076'>**Gentoo**</span> and <span style='color: #ff6900'>**Adelie**</span>",
        caption = "Datasource: (Horst, Hill, and Gorman 2020)") +
    annotate(
     geom = "curve", x = 55, y = 14,
-    xend = steve$bill_length_mm, yend = steve$bill_depth_mm - 0.3, 
+    xend = Brenda$bill_length_mm, yend = Brenda$bill_depth_mm - 0.3, 
     curvature = .3, size = 1, arrow = arrow(length = unit(2, "mm"))
   ) +
   annotate(
     geom = "text",
-    label = "Steve",
+    label = "Brenda",
     x = 55, y = 14, vjust = 0.5, hjust = 1.2,
     fontface = "bold"
   ) +
   theme_minimal() +
   theme(plot.subtitle = element_markdown(size = 16),
-        plot.title = element_text(size = 18))
+        plot.title = element_text(size = 18),
+        legend.position = "bottom")
 ```
 
 ![](./img/lter_penguins.png){width=30% #small-penguins}
+
+![](img/2022-06-20-11-16-09.png){width=30% #bills}
 
 ## Inclusive and Truthful Colors
 
@@ -435,7 +482,7 @@ datasauRus::box_plots |>
 
 ![](img/2022-06-07-13-13-52.png){.fr}
 
-- by Hadley Wickhame [@wickhamTidyData2014]
+- by Hadley Wickham [@wickhamTidyData2014]
 - derived from Codd's Third Normal Form [@coddFurtherNormalizationData1972]
 - allows the direct mapping between aesthetics and variables
 
@@ -462,7 +509,18 @@ datasauRus::box_plots |>
 
 ## Break the Rules
 
-```{r} 
+```{r}
+#| code-line-numbers: '1-2'
+penguins |> 
+  select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |> 
+  head() |> 
+  kable()
+```
+
+## Break the Rules
+
+```{r}
+#| code-line-numbers: '3'
 penguins |> 
   select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |> 
   pivot_longer(-species) |>
@@ -470,10 +528,13 @@ penguins |>
   kable()
 ```
 
+Every penguin is now **spread across 4 rows**.
+
 
 ## Break the Rules
 
 ```{r} 
+#| code-line-numbers: '4-10'
 penguins |> 
   select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |> 
   pivot_longer(-species) |> 
@@ -499,8 +560,8 @@ penguins |>
 #| fig-cap: A plotnine plot.
 #| code-line-numbers: '6-7'
 import warnings
-from plotnine import *
 warnings.simplefilter("ignore")
+from plotnine import *
 
 print(
 ggplot(r.penguins, aes('bill_length_mm', 'bill_depth_mm', color='species'))
@@ -519,7 +580,9 @@ ggplot(r.penguins, aes('bill_length_mm', 'bill_depth_mm', color='species'))
 ```{python seaborn}
 #| label: fig-seaborn
 #| fig-cap: A seaborn plot.
-#| code-line-numbers: '4-5'
+#| code-line-numbers: '6-7'
+import warnings
+warnings.simplefilter("ignore")
 import seaborn.objects as so
 
 (
@@ -550,18 +613,14 @@ draw(img, p)
 
 # The greater context
 
-Jannik's predictions for the future
-
-![](https://media.giphy.com/media/0DYipdNqJ5n4GYATKL/giphy.gif)
-
-## Jannik's predictions for the future
+## The greater context
 
 > "Somehow all plotting libraries converge into some object based language."\
 > --- \@tsuname
 
 . . .
 
-But: Objects are just implementation details
+Objects are just **implementation details**
 
 :::footer
 <https://twitter.com/tsuname/status/1528162783975514112?s=20&t=5SBAhFLQ7VcINH5DLUDUFg>
@@ -570,14 +629,23 @@ But: Objects are just implementation details
 
 ## Jannik's predictions for the future
 
+Jannik's predictions for the future
+
+. . .
+
+![](./img/future-once.gif)
+
+
+## Jannik's predictions for the future
+
 ::: {.incremental}
 - modal systems $\gt$ monolithic structures
 - composition $\gt$ inheritance
   - `python`: method chaining
-    ```python
+    ```python 
     baseplot(data).add(Scatter()).add(...)
     ```
-  - `R`: operator overloading (or `|>`)
+  - `R`: operator overloading (nearly `|>`)
     ```r
     ggplot(data) + geom_scatter() + theme()
     ```

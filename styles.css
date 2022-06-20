@@ -69,3 +69,23 @@ blockquote {
 .fr {
   float: right;
 }
+
+.tr {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.penguins-table table {
+  font-size: 1.2rem;
+}
+
+
+#bills {
+    position: absolute;
+    width: 50.0%;
+    bottom: 0;
+    left: 0;
+}
+
+
