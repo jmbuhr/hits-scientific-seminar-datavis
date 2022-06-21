@@ -171,7 +171,7 @@ penguins |>
                   se = FALSE,
                   linetype = 2,
                   color = "black") +
-  geom_point(aes(shape=sex)) +
+  geom_point(aes(shape = sex)) +
   facet_wrap(~island, labeller=label_both) +
   scale_shape(na.value = 15) +
   theme(text = element_text(size = 20))
@@ -313,7 +313,7 @@ penguins |>
   filter(!is.na(sex)) |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species, group = species)) +
   geom_smooth(method = lm, se = FALSE, alpha = 0.6) +
-  geom_point(aes(shape = sex), size = 1.4) +
+  geom_point(aes(shape = sex)) +
   scale_color_manual(values = c(Chinstrap = "#c55bca",
                                 Gentoo    = "#047076",
                                 Adelie    = "#ff6900")) +
