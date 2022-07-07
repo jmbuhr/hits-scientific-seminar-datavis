@@ -713,7 +713,7 @@ figcaption {
 <script src="./www/qrcode.min.js"></script>
 <script type="text/javascript">
 let elem = document.getElementById("qrcode")
-new QRCode(elem, "https:/github.com/jmbuhr/hits-scientific-seminar-datavis");
+new QRCode(elem, "https://github.com/jmbuhr/hits-scientific-seminar-datavis");
 </script>
 ```
 
